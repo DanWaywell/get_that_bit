@@ -4,6 +4,7 @@ var anim = "idle"
 
 @onready var character = $".."
 @onready var animation_player = $AnimationPlayer
+@onready var ledge_grab_node = $"../LedgeGrabNode"
 
 
 func _physics_process(delta):
@@ -13,7 +14,9 @@ func _physics_process(delta):
 		flip_h = false
 	
 	var new_anim = ""
-	if character.is_on_floor():
+	if ledge_grab_node.on_ledge:
+		new_anim = "grab_ledge"
+	elif character.is_on_floor():
 		if abs(character.velocity.x) < 1:
 			new_anim = "idle"
 		else:
