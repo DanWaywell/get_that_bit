@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://3qit81xgt7n0"]
+[gd_scene load_steps=3 format=3 uid="uid://3qit81xgt7n0"]
 
 [ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://level/level_base_class.tscn" id="1_vcaxg"]
+[ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="2_yn13h"]
 
 [node name="LevelBaseClass" instance=ExtResource("1_vcaxg")]
 
 [node name="TileMap" parent="." index="0"]
-layer_0/tile_data = PackedInt32Array(655361, 1, 1, 655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655387, 1, 1, 655388, 1, 1, 655389, 1, 1, 655375, 1, 1, 655376, 1, 1, 262155, 1, 1, 262156, 1, 1, 262157, 1, 1, 655379, 1, 1, 655380, 1, 1, 262158, 1, 1, 262159, 1, 1, 262160, 1, 1, 262161, 1, 1, 262154, 1, 1, 655381, 1, 1, 655384, 1, 1, 262169, 1, 1, 262168, 1, 1, 262167, 1, 1, 262166, 1, 1, 262165, 1, 1, 262164, 1, 1, 262163, 1, 1, 262162, 1, 1, 262170, 1, 1, 589829, 1, 1, 524294, 1, 1, 458759, 1, 1, 393224, 1, 1, 327689, 1, 1)
+layer_0/tile_data = PackedInt32Array(655361, 1, 1, 655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655387, 1, 1, 655388, 1, 1, 655389, 1, 1, 655384, 1, 1, 655365, 1, 1, 655366, 1, 1, 655367, 1, 1, 655368, 1, 1, 655382, 1, 1, 655383, 1, 1, 655385, 1, 1, 655386, 1, 1, 655374, 1, 1, 655373, 1, 1, 655377, 1, 1, 655378, 1, 1, 655372, 1, 1, 655371, 1, 1, 655379, 1, 1)
+
+[node name="Bit" parent="Bits" index="0"]
+position = Vector2(128, 68)
+
+[node name="Bit2" parent="Bits" index="1" instance=ExtResource("2_yn13h")]
+position = Vector2(80, 68)
+
+[node name="Bit3" parent="Bits" index="2" instance=ExtResource("2_yn13h")]
+position = Vector2(168, 68)

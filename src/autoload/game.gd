@@ -3,11 +3,12 @@ extends Node
 const title_screen = "res://menu/title_screen.tscn"
 const end_screen = "res://menu/end_screen.tscn"
 
-const first_level_adderess = "res://level/level_1000.tscn"
+const first_level_adderess = "res://level/level_1001.tscn"
+const first_level_number = 1001
 const adderess_begining = "res://level/level_"
 const adderess_end = ".tscn"
 
-var current_level_number := 1000
+var current_level_number := first_level_number
 var current_level_address := first_level_adderess
 
 
@@ -28,10 +29,6 @@ func _process(delta):
 			DisplayServer.window_set_position(Vector2i(320, 180))
 
 
-func start_game():
-	get_tree().change_scene_to_file(title_screen)
-
-
 func go_to_next_level():
 	# build level address
 	var next_level_number = current_level_number + 1
@@ -43,7 +40,7 @@ func go_to_next_level():
 		current_level_address = next_level_adderess
 		get_tree().call_deferred("change_scene_to_file", current_level_address)
 	else:
-		current_level_number = 1000
+		current_level_number = first_level_number
 		current_level_address =  first_level_adderess
 		get_tree().call_deferred("change_scene_to_file", end_screen)
 

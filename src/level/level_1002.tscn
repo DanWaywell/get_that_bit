@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://l6hn5hc7fedx"]
+[gd_scene load_steps=3 format=3 uid="uid://l6hn5hc7fedx"]
 
 [ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://level/level_base_class.tscn" id="1_adjue"]
+[ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="2_5kbyx"]
 
 [node name="LevelBaseClass" instance=ExtResource("1_adjue")]
 
 [node name="TileMap" parent="." index="0"]
-layer_0/tile_data = PackedInt32Array(655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655387, 1, 1, 655389, 1, 1, 655388, 1, 1, 655376, 1, 1, 655375, 1, 1, 655374, 1, 1, 655377, 1, 1, 655365, 1, 1, 655366, 1, 1, 655367, 1, 1, 655368, 1, 1, 589830, 1, 1, 589831, 1, 1, 589832, 1, 1, 589833, 1, 1, 655369, 1, 1, 524296, 1, 1, 524297, 1, 1, 524295, 1, 1, 589834, 1, 1, 655370, 1, 1, 655372, 1, 1, 655373, 1, 1, 655371, 1, 1, 458764, 1, 1, 458765, 1, 1, 458770, 1, 1, 458771, 1, 1, 458774, 1, 1, 524310, 1, 1, 589846, 1, 1, 655382, 1, 1, 655381, 1, 1, 655380, 1, 1, 655379, 1, 1, 655378, 1, 1, 655383, 1, 1, 655384, 1, 1, 655385, 1, 1, 655386, 1, 1, 524311, 1, 1, 589847, 1, 1, 589848, 1, 1)
+layer_0/tile_data = PackedInt32Array(655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655387, 1, 1, 655389, 1, 1, 655388, 1, 1, 655365, 1, 1, 655366, 1, 1, 655367, 1, 1, 655368, 1, 1, 655369, 1, 1, 655370, 1, 1, 655382, 1, 1, 655381, 1, 1, 655383, 1, 1, 655384, 1, 1, 655385, 1, 1, 655386, 1, 1, 655371, 1, 1, 655372, 1, 1, 655373, 1, 1, 655374, 1, 1, 655375, 1, 1, 655376, 1, 1, 655377, 1, 1, 655378, 1, 1, 655379, 1, 1, 655380, 1, 1)
+
+[node name="Bit" parent="Bits" index="0"]
+position = Vector2(160, 76)
+
+[node name="Bit2" parent="Bits" index="1" instance=ExtResource("2_5kbyx")]
+position = Vector2(96, 76)

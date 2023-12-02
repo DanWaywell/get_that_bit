@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://8ea8xqfxpvja"]
+[gd_scene load_steps=3 format=3 uid="uid://8ea8xqfxpvja"]
 
 [ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://level/level_base_class.tscn" id="1_dcj6d"]
+[ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="2_cauu8"]
 
 [node name="LevelBaseClass" instance=ExtResource("1_dcj6d")]
 
 [node name="TileMap" parent="." index="0"]
-layer_0/tile_data = PackedInt32Array(655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 1048582, 1, 1, 1048583, 1, 1, 1048584, 1, 1, 1048585, 1, 1, 1048586, 1, 1, 1048587, 1, 1, 1048588, 1, 1, 1048589, 1, 1, 1048590, 1, 1, 1048591, 1, 1, 1048592, 1, 1, 1048593, 1, 1, 1048594, 1, 1, 1048595, 1, 1, 1048596, 1, 1, 1048597, 1, 1, 1048598, 1, 1, 1048599, 1, 1, 1048600, 1, 1, 1048601, 1, 1, 1048581, 1, 1, 1048580, 1, 1, 655387, 1, 1, 655388, 1, 1, 655389, 1, 1, 917529, 1, 1, 786458, 1, 1, 1048602, 1, 1, 1048603, 1, 1, 786437, 1, 1, 917510, 1, 1, 917520, 1, 1, 917519, 1, 1, 786447, 1, 1, 786448, 1, 1, 655375, 1, 1, 655376, 1, 1, 851980, 1, 1, 851987, 1, 1, 720915, 1, 1, 720908, 1, 1, 851991, 1, 1, 720919, 1, 1, 851976, 1, 1, 720904, 1, 1)
+layer_0/tile_data = PackedInt32Array(655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655387, 1, 1, 655388, 1, 1, 655389, 1, 1, 655386, 1, 1, 655385, 1, 1, 655366, 1, 1, 655365, 1, 1, 655374, 1, 1, 655377, 1, 1, 655371, 1, 1, 655380, 1, 1, 655383, 1, 1, 655384, 1, 1, 655368, 1, 1, 655367, 1, 1)
+
+[node name="Bit" parent="Bits" index="0"]
+position = Vector2(92, 72)
+
+[node name="Bit2" parent="Bits" index="1" instance=ExtResource("2_cauu8")]
+position = Vector2(116, 72)
+
+[node name="Bit3" parent="Bits" index="2" instance=ExtResource("2_cauu8")]
+position = Vector2(140, 72)
+
+[node name="Bit4" parent="Bits" index="3" instance=ExtResource("2_cauu8")]
+position = Vector2(164, 72)
