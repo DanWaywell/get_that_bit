@@ -1,11 +1,59 @@
-[gd_scene load_steps=11 format=3 uid="uid://7vyxa0r88jw1"]
+[gd_scene load_steps=13 format=3 uid="uid://7vyxa0r88jw1"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_3ncon"]
 [ext_resource type="Texture2D" uid="uid://b6tw7cndx85hk" path="res://assets/sprites.png" id="1_eqe5j"]
 [ext_resource type="Script" path="res://character/sprite.gd" id="3_j61fq"]
+[ext_resource type="Script" path="res://character/ledge_grab_node.gd" id="4_gi7m8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cikdt"]
 size = Vector2(6, 7)
+
+[sub_resource type="Animation" id="Animation_ogrma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xfnvw"]
+resource_name = "fall"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m5w8m"]
+resource_name = "grab_ledge"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_0mue8"]
 resource_name = "idle"
@@ -24,7 +72,8 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0), Vector2i(1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ogrma"]
+[sub_resource type="Animation" id="Animation_y4pst"]
+resource_name = "jump"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -36,7 +85,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 0)]
+"values": [Vector2i(2, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5tjwt"]
@@ -56,42 +105,11 @@ tracks/0/keys = {
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_y4pst"]
-resource_name = "jump"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(2, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_xfnvw"]
-resource_name = "fall"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(3, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6h0h7"]
 _data = {
 "RESET": SubResource("Animation_ogrma"),
 "fall": SubResource("Animation_xfnvw"),
+"grab_ledge": SubResource("Animation_m5w8m"),
 "idle": SubResource("Animation_0mue8"),
 "jump": SubResource("Animation_y4pst"),
 "run": SubResource("Animation_5tjwt")
@@ -127,4 +145,27 @@ libraries = {
 }
 autoplay = "idle"
 
+[node name="LedgeGrabNode" type="Node2D" parent="."]
+script = ExtResource("4_gi7m8")
+
+[node name="RayCast" type="RayCast2D" parent="LedgeGrabNode"]
+position = Vector2(4, -6)
+target_position = Vector2(0, 2)
+
+[node name="RayCast2" type="RayCast2D" parent="LedgeGrabNode"]
+position = Vector2(4, -7)
+target_position = Vector2(0, -2)
+hit_from_inside = true
+
+[node name="RayCast3" type="RayCast2D" parent="LedgeGrabNode"]
+position = Vector2(3, -2)
+target_position = Vector2(2, 0)
+hit_from_inside = true
+
+[node name="Timer" type="Timer" parent="LedgeGrabNode"]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="LedgeGrabNode/Timer" to="LedgeGrabNode" method="_on_timer_timeout"]
