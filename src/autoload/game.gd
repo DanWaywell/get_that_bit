@@ -1,15 +1,15 @@
 extends Node
 
-const title_screen = "res://menu/title_screen.tscn"
-const end_screen = "res://menu/end_screen.tscn"
+const PATH_TITLE_SCREEN = "res://menu/title_screen.tscn"
+const PATH_END_SCREEN = "res://menu/end_screen.tscn"
 
-const first_level_adderess = "res://level/level_1001.tscn"
-const first_level_number = 1001
-const adderess_begining = "res://level/level_"
-const adderess_end = ".tscn"
+const PATH_FIRST_LEVEL = "res://level/level_1001.tscn"
+const FIRST_LEVEL_NUMBER = 1001
+const PATH_BEGIN = "res://level/level_"
+const PATH_END = ".tscn"
 
-var current_level_number := first_level_number
-var current_level_address := first_level_adderess
+var current_level_number := FIRST_LEVEL_NUMBER
+var current_level_address := PATH_FIRST_LEVEL
 
 
 func _process(delta):
@@ -19,6 +19,7 @@ func _process(delta):
 			go_to_title_screen()
 		else:
 			get_tree().quit()
+	
 	# Fullscreen
 	if Input.is_action_just_pressed("fullscreen"):
 		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -29,21 +30,55 @@ func _process(delta):
 			DisplayServer.window_set_position(Vector2i(320, 180))
 
 
-func go_to_next_level():
-	# build level address
-	var next_level_number = current_level_number + 1
-	var next_level_adderess = adderess_begining + str(next_level_number) + adderess_end
-	
-	# check if scene exists and change scene or go to end screen
-	if ResourceLoader.exists(next_level_adderess):
-		current_level_number = int(next_level_number)
-		current_level_address = next_level_adderess
-		get_tree().call_deferred("change_scene_to_file", current_level_address)
-	else:
-		current_level_number = first_level_number
-		current_level_address =  first_level_adderess
-		get_tree().call_deferred("change_scene_to_file", end_screen)
+func build_level_path_from_number(level_number):
+	var next_level_path = PATH_BEGIN + str(level_number) + PATH_END
+	return next_level_path
+
+
+func change_scene_to(path):
+	get_tree().call_deferred("change_scene_to_file", path)
 
 
 func go_to_title_screen():
-	get_tree().call_deferred("change_scene_to_file", title_screen)
+	change_scene_to(PATH_TITLE_SCREEN)
+
+
+func end_game():
+	change_scene_to(PATH_END_SCREEN)
+
+
+func reset_game_data():
+	current_level_number = FIRST_LEVEL_NUMBER
+	current_level_address =  PATH_FIRST_LEVEL
+
+
+func reset_game():
+	reset_game_data()
+	change_scene_to(PATH_TITLE_SCREEN)
+
+
+func go_to_next_level():
+	var number = current_level_number + 1
+	var path = build_level_path_from_number(number)
+	
+	if level_exists(path):
+		change_to_level(number)
+	else:
+		end_game()
+
+
+func level_exists(path):
+	if ResourceLoader.exists(path):
+		return true
+	else:
+		return false
+
+
+func change_to_level(number):
+	var path = build_level_path_from_number(number)
+	if level_exists(path):
+		current_level_number = number
+		current_level_address = path
+		change_scene_to(path)
+	else:
+		assert("Level Does Not Exist!")

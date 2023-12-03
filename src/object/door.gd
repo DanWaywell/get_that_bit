@@ -8,6 +8,7 @@ var door_open = false
 func _ready():
 	sprite_2d.modulate = Color(1, 1, 1, 0.3)
 
+
 func _open_door():
 	door_open = true
 	sprite_2d.modulate = Color(1, 1, 1, 1)
