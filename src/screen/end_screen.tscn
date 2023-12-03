@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crto2amk2svbb"]
 
-[ext_resource type="Script" path="res://menu/end_screen.gd" id="1_jwvl0"]
+[ext_resource type="Script" path="res://screen/end_screen.gd" id="1_jwvl0"]
 [ext_resource type="Texture2D" uid="uid://ccqx8i4llk4v2" path="res://assets/end_image.png" id="1_ukc56"]
 
 [node name="EndScreen" type="Control"]
@@ -28,7 +28,7 @@ grow_vertical = 2
 texture = ExtResource("1_ukc56")
 
 [node name="TimerRestart" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 

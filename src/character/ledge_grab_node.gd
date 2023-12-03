@@ -21,6 +21,7 @@ func _physics_process(delta):
 		ray_cast.enabled = false
 		timer.start(0.2)
 	
+	# 
 	if ray_cast.is_colliding()\
 	and not ray_cast_2.is_colliding()\
 	and not character.is_on_floor()\

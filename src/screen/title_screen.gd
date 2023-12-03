@@ -11,4 +11,4 @@ func _process(delta):
 
 
 func _on_texture_button_pressed():
-	get_tree().change_scene_to_file(Game.current_level_address)
+	Game.start()
