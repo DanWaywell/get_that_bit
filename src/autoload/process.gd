@@ -6,7 +6,10 @@ func _process(_delta):
 	# Quit
 	if Input.is_action_just_pressed("ui_cancel"):
 		if get_tree().current_scene.name == "TitleScreen":
-			get_tree().quit()
+			if OS.get_name() == "Web":
+				return
+			else:
+				get_tree().quit()
 		else:
 			game._go_to_title_screen()
 	
