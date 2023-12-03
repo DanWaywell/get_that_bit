@@ -2,16 +2,16 @@ extends Area2D
 
 var door_open = false
 
-@onready var sprite_2d = $Sprite2D
+@onready var sprite = $Sprite
 
 
 func _ready():
-	sprite_2d.modulate = Color(1, 1, 1, 0.3)
+	sprite.modulate = Color(1, 1, 1, 0.3)
 
 
 func _open_door():
 	door_open = true
-	sprite_2d.modulate = Color(1, 1, 1, 1)
+	sprite.modulate = Color(1, 1, 1, 1)
 
 
 func _on_body_entered(body):

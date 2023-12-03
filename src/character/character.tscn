@@ -120,11 +120,11 @@ z_index = 1
 collision_layer = 2
 script = ExtResource("1_3ncon")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_cikdt")
 
-[node name="PrejumpTimer" type="Timer" parent="."]
+[node name="TimerPrejump" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.1
 one_shot = true
@@ -148,16 +148,16 @@ autoplay = "idle"
 [node name="LedgeGrabNode" type="Node2D" parent="."]
 script = ExtResource("4_gi7m8")
 
-[node name="RayCast" type="RayCast2D" parent="LedgeGrabNode"]
+[node name="RayCastDown" type="RayCast2D" parent="LedgeGrabNode"]
 position = Vector2(4, -6)
 target_position = Vector2(0, 2)
 
-[node name="RayCast2" type="RayCast2D" parent="LedgeGrabNode"]
+[node name="RayCastUp" type="RayCast2D" parent="LedgeGrabNode"]
 position = Vector2(4, -7)
 target_position = Vector2(0, -2)
 hit_from_inside = true
 
-[node name="RayCast3" type="RayCast2D" parent="LedgeGrabNode"]
+[node name="RayCastForward" type="RayCast2D" parent="LedgeGrabNode"]
 position = Vector2(3, -2)
 target_position = Vector2(2, 0)
 hit_from_inside = true

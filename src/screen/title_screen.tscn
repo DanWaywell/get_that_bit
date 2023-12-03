@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_r7je4")
 
-[node name="TitleImage" type="TextureRect" parent="."]
+[node name="TextureTitle" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_loxo0")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="ButtonStart" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 101.0
 offset_top = 99.0
@@ -34,4 +34,4 @@ texture_normal = ExtResource("3_eu8gf")
 texture_pressed = ExtResource("4_y25je")
 texture_hover = ExtResource("5_8dohg")
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]

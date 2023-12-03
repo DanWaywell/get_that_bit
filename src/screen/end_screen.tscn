@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jwvl0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureEnd" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

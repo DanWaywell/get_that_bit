@@ -1,14 +1,16 @@
 extends Control
 
+@onready var button_start = $ButtonStart
+
 
 func _ready():
-	$TextureButton.grab_focus()
+	button_start.grab_focus()
 
 
 func _process(delta):
 	if Input.is_action_just_pressed("jump"):
-		_on_texture_button_pressed()
+		Game.start()
 
 
-func _on_texture_button_pressed():
+func _on_button_start_pressed():
 	Game.start()
