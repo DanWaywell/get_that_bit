@@ -2,7 +2,7 @@ extends Area2D
 
 var picked_up = false
 
-@onready var collision_shape = $CollisionShape
+@onready var collision_shape: CollisionShape2D = $CollisionShape
 
 
 func _on_body_entered(body):

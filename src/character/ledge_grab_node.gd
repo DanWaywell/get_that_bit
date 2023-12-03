@@ -1,15 +1,15 @@
 extends Node2D
 
-var on_ledge = false
+var on_ledge: bool = false
 
-@onready var character = $".."
-@onready var ray_cast_down = $RayCastDown
-@onready var ray_cast_up = $RayCastUp
-@onready var ray_cast_forward = $RayCastForward
-@onready var timer = $Timer
+@onready var character: Character = $".."
+@onready var ray_cast_down: RayCast2D = $RayCastDown
+@onready var ray_cast_up: RayCast2D = $RayCastUp
+@onready var ray_cast_forward: RayCast2D = $RayCastForward
+@onready var timer: Timer = $Timer
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if character.direction_facing == Vector2.LEFT:
 		scale.x = -1
 	else:

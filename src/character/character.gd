@@ -18,7 +18,7 @@ var gravity = DEFAULT_GRAVITY
 var _air_time = 0.0
 var _input_direction = 0.0
 
-@onready var timer_prejump = $TimerPrejump
+@onready var timer_prejump: Timer = $TimerPrejump
 
 
 func _physics_process(delta):

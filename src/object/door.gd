@@ -2,7 +2,7 @@ extends Area2D
 
 var door_open = false
 
-@onready var sprite = $Sprite
+@onready var sprite: Sprite2D = $Sprite
 
 
 func _ready():

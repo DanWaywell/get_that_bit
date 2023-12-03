@@ -2,12 +2,12 @@ extends Sprite2D
 
 var anim = "idle"
 
-@onready var character = $".."
+@onready var character: Character = $".."
 @onready var animation_player = $AnimationPlayer
 @onready var ledge_grab_node = $"../LedgeGrabNode"
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if character.direction_facing == Vector2.LEFT:
 		flip_h = true
 	else:
