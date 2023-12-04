@@ -52,6 +52,14 @@ func jump():
 	velocity.y = JUMP_VELOCITY
 
 
+func crush(body):
+	die()
+
+
+func die():
+	Game.reset_level()
+
+
 func _process_gravity(delta):
 	if velocity.y > 0:
 		velocity.y += gravity * delta
@@ -93,7 +101,3 @@ func _process_direction_facing():
 		direction_facing = Vector2.RIGHT
 	elif _input < 0:
 		direction_facing = Vector2.LEFT
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	get_tree().reload_current_scene()

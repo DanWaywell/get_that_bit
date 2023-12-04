@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7vyxa0r88jw1"]
+[gd_scene load_steps=14 format=3 uid="uid://7vyxa0r88jw1"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_3ncon"]
 [ext_resource type="Texture2D" uid="uid://b6tw7cndx85hk" path="res://assets/sprites.png" id="1_eqe5j"]
@@ -115,6 +115,9 @@ _data = {
 "run": SubResource("Animation_5tjwt")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iaw01"]
+size = Vector2(2, 3)
+
 [node name="Character" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
@@ -168,5 +171,12 @@ process_callback = 0
 wait_time = 0.2
 one_shot = true
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="AreaCrush" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCrush"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_iaw01")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="die"]
 [connection signal="timeout" from="LedgeGrabNode/Timer" to="LedgeGrabNode" method="_on_timer_timeout"]
+[connection signal="body_entered" from="AreaCrush" to="." method="crush"]

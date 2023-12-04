@@ -16,7 +16,7 @@ func start():
 	_change_scene_to(level_path)
 
 
-func reset():
+func reset_game():
 	_reset_data()
 	_change_scene_to(PATH_TITLE_SCREEN)
 
@@ -29,6 +29,10 @@ func go_to_next_level():
 		_change_to_level(number)
 	else:
 		_go_to_end_screen()
+
+
+func reset_level():
+	get_tree().call_deferred("reload_current_scene")
 
 
 func go_to_title_screen():
