@@ -1,10 +1,10 @@
 extends Sprite2D
 
-var anim = "idle"
+var anim := "idle"
 
+@onready var animation_player := $AnimationPlayer
 @onready var character: Character = $".."
-@onready var animation_player = $AnimationPlayer
-@onready var ledge_grab_node = $"../LedgeGrabNode"
+@onready var ledge_grab_node: Node2D = $"../LedgeGrabNode"
 
 
 func _physics_process(_delta):

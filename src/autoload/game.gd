@@ -31,6 +31,10 @@ func go_to_next_level():
 		_go_to_end_screen()
 
 
+func go_to_title_screen():
+	_change_scene_to(PATH_TITLE_SCREEN)
+
+
 func _change_to_level(number: int):
 	var path = _build_level_path_from_number(number)
 	if _level_exists(path):
@@ -48,10 +52,6 @@ func _build_level_path_from_number(number: int) -> String:
 
 func _change_scene_to(path: String):
 	get_tree().call_deferred("change_scene_to_file", path)
-
-
-func _go_to_title_screen():
-	_change_scene_to(PATH_TITLE_SCREEN)
 
 
 func _go_to_end_screen():

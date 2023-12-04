@@ -11,14 +11,14 @@ const GROUND_DECEL = 0.4
 const AIR_ACCEL = 0.1
 const AIR_DECEL = 0.02
 
-var active = true
-var direction_facing = Vector2.RIGHT
-var gravity = DEFAULT_GRAVITY
+var active := true
+var direction_facing := Vector2.RIGHT
+var gravity := DEFAULT_GRAVITY
 
-var _air_time = 0.0
-var _input_direction = 0.0
+var _air_time := 0.0
+var _input_direction := 0.0
 
-@onready var timer_prejump: Timer = $TimerPrejump
+@onready var timer_prejump := $TimerPrejump
 
 
 func _physics_process(delta):

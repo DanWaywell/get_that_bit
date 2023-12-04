@@ -1,12 +1,12 @@
 extends Node2D
 
-var on_ledge: bool = false
+var on_ledge := false
 
 @onready var character: Character = $".."
-@onready var ray_cast_down: RayCast2D = $RayCastDown
-@onready var ray_cast_up: RayCast2D = $RayCastUp
-@onready var ray_cast_forward: RayCast2D = $RayCastForward
-@onready var timer: Timer = $Timer
+@onready var ray_cast_down := $RayCastDown
+@onready var ray_cast_up := $RayCastUp
+@onready var ray_cast_forward := $RayCastForward
+@onready var timer := $Timer
 
 
 func _physics_process(_delta):

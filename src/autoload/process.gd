@@ -1,6 +1,7 @@
 extends Node
 
-@onready var game = $".."
+@onready var game: Node = $".."
+
 
 func _process(_delta):
 	# Quit
@@ -11,7 +12,7 @@ func _process(_delta):
 			else:
 				get_tree().quit()
 		else:
-			game._go_to_title_screen()
+			game.go_to_title_screen()
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("fullscreen"):

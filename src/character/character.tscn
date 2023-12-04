@@ -130,6 +130,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -1)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_eqe5j")
@@ -150,16 +151,16 @@ script = ExtResource("4_gi7m8")
 
 [node name="RayCastDown" type="RayCast2D" parent="LedgeGrabNode"]
 position = Vector2(4, -6)
-target_position = Vector2(0, 2)
+target_position = Vector2(0, 3)
 
 [node name="RayCastUp" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(4, -7)
-target_position = Vector2(0, -2)
+position = Vector2(4, -6)
+target_position = Vector2(0, -3)
 hit_from_inside = true
 
 [node name="RayCastForward" type="RayCast2D" parent="LedgeGrabNode"]
 position = Vector2(3, -2)
-target_position = Vector2(2, 0)
+target_position = Vector2(3, 0)
 hit_from_inside = true
 
 [node name="Timer" type="Timer" parent="LedgeGrabNode"]

@@ -1,6 +1,6 @@
 extends Area2D
 
-var door_open = false
+var door_open := false
 
 @onready var sprite: Sprite2D = $Sprite
 
