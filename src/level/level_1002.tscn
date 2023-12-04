@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://level/level_1000_base_class.tscn" id="1_adjue"]
 [ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="2_5kbyx"]
 
-[node name="LevelBaseClass" instance=ExtResource("1_adjue")]
+[node name="Level1002" instance=ExtResource("1_adjue")]
 
 [node name="TileMap" parent="." index="0"]
 layer_0/tile_data = PackedInt32Array(655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655387, 1, 1, 655389, 1, 1, 655388, 1, 1, 655365, 1, 1, 655366, 1, 1, 655367, 1, 1, 655368, 1, 1, 655369, 1, 1, 655370, 1, 1, 655382, 1, 1, 655381, 1, 1, 655383, 1, 1, 655384, 1, 1, 655385, 1, 1, 655386, 1, 1, 655371, 1, 1, 655372, 1, 1, 655373, 1, 1, 655374, 1, 1, 655375, 1, 1, 655376, 1, 1, 655377, 1, 1, 655378, 1, 1, 655379, 1, 1, 655380, 1, 1)
