@@ -1,6 +1,7 @@
 extends Node2D
 
 var on_ledge := false
+var can_turn := true
 
 @onready var character: Character = $".."
 @onready var ray_cast_down := $RayCastDown
@@ -10,10 +11,12 @@ var on_ledge := false
 
 
 func _physics_process(_delta):
-	if character.direction_facing == Vector2.LEFT:
-		scale.x = -1
-	else:
-		scale.x = 1
+	if can_turn:
+		var input := Input.get_axis("left", "right")
+		if input < 0:
+			scale.x = -1
+		elif input > 0:
+			scale.x = 1
 	
 	# delay to not get ledge grab when just jumping a single tile high
 	if character.is_on_floor() and Input.is_action_just_pressed("jump"):
@@ -25,6 +28,7 @@ func _physics_process(_delta):
 		
 		# Start ledge grab
 		on_ledge = true
+		can_turn = false
 		ray_cast_down.enabled = false
 
 		character.stop()
@@ -40,12 +44,14 @@ func _physics_process(_delta):
 		
 		if Input.is_action_just_pressed("jump"):
 			on_ledge = false
+			can_turn = true
 			timer.start()
 			character.start()
 			character.jump()
 			
 		elif Input.is_action_just_pressed("down"):
 			on_ledge = false
+			can_turn = true
 			timer.start()
 			character.start()
 

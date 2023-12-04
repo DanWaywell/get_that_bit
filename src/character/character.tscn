@@ -165,7 +165,7 @@ hit_from_inside = true
 
 [node name="Timer" type="Timer" parent="LedgeGrabNode"]
 process_callback = 0
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
