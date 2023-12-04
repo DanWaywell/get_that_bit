@@ -150,12 +150,12 @@ autoplay = "idle"
 script = ExtResource("4_gi7m8")
 
 [node name="RayCastDown" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(4, -6)
+position = Vector2(4, -7)
 target_position = Vector2(0, 3)
 
 [node name="RayCastUp" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(4, -6)
-target_position = Vector2(0, -3)
+position = Vector2(1, -4)
+target_position = Vector2(3, -6)
 hit_from_inside = true
 
 [node name="RayCastForward" type="RayCast2D" parent="LedgeGrabNode"]

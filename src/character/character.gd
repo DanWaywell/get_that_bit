@@ -16,14 +16,15 @@ var direction_facing := Vector2.RIGHT
 var gravity := DEFAULT_GRAVITY
 
 var _air_time := 0.0
-var _input_direction := 0.0
+var _input := 0.0
 
 @onready var timer_prejump := $TimerPrejump
 
 
 func _physics_process(delta):
 	if active:
-		_input_direction = Input.get_axis("left", "right")
+		_input = Input.get_axis("left", "right")
+		_process_direction_facing()
 		
 		if not is_on_floor():
 			_air_time += delta
@@ -35,13 +36,12 @@ func _physics_process(delta):
 		_process_x_movement()
 		move_and_slide()
 
-		_process_direction_facing()
-
 
 func stop():
 	active = false
 	_air_time = 0.0
 	velocity = Vector2()
+	timer_prejump.stop()
 
 
 func start():
@@ -76,22 +76,22 @@ func _process_jump():
 
 func _process_x_movement():
 	# movement on ground and in air with acceleration and deceleration
-	if _input_direction:
+	if _input:
 		if is_on_floor():
-			velocity.x = lerp(velocity.x, _input_direction * SPEED, GROUND_ACCEL)
+			velocity.x = lerp(velocity.x, _input * SPEED, GROUND_ACCEL)
 		else:
-			velocity.x = lerp(velocity.x, _input_direction * SPEED, AIR_ACCEL)
+			velocity.x = lerp(velocity.x, _input * SPEED, AIR_ACCEL)
 	else:
 		if is_on_floor():
-			velocity.x = lerp(velocity.x, _input_direction * SPEED, GROUND_DECEL)
+			velocity.x = lerp(velocity.x, _input * SPEED, GROUND_DECEL)
 		else:
 			velocity.x = lerp(velocity.x, 0.0, AIR_DECEL)
 
 
 func _process_direction_facing():
-	if _input_direction > 0:
+	if _input > 0:
 		direction_facing = Vector2.RIGHT
-	elif _input_direction < 0:
+	elif _input < 0:
 		direction_facing = Vector2.LEFT
 
 

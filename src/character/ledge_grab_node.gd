@@ -18,21 +18,16 @@ func _physics_process(_delta):
 		elif input > 0:
 			scale.x = 1
 	
-	# delay to not get ledge grab when just jumping a single tile high
-	if character.is_on_floor() and Input.is_action_just_pressed("jump"):
-		ray_cast_down.enabled = false
-		timer.start(0.2)
-	
+	# Start ledge grab
 	if not character.is_on_floor() and not on_ledge\
 	and ray_cast_down.is_colliding() and not ray_cast_up.is_colliding():
 		
-		# Start ledge grab
 		on_ledge = true
 		can_turn = false
 		ray_cast_down.enabled = false
 
 		character.stop()
-		if character.direction_facing == Vector2.RIGHT:
+		if scale.x == 1:
 			character.position.x = ray_cast_forward.get_collision_point().x - 3
 			character.position.y = ray_cast_down.get_collision_point().y + 4
 		else:
