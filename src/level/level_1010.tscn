@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwuyekfuf0bbp"]
+
+[ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://level/level_1000_base_class.tscn" id="1_ds2ld"]
+[ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="2_vvahr"]
+
+[node name="Level1010" instance=ExtResource("1_ds2ld")]
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655365, 1, 1, 655366, 1, 1, 655367, 1, 1, 655368, 1, 1, 655369, 1, 1, 655370, 1, 1, 655371, 1, 1, 655372, 1, 1, 655373, 1, 1, 655374, 1, 1, 655375, 1, 1, 655376, 1, 1, 655377, 1, 1, 655378, 1, 1, 655379, 1, 1, 655384, 1, 1, 655385, 1, 1, 655386, 1, 1, 655387, 1, 1, 655388, 1, 1, 655389, 1, 1, 655383, 1, 1, 655382, 1, 1, 655381, 1, 1, 655380, 1, 1, 589839, 1, 1, 589840, 1, 1, 524303, 1, 1, 524304, 1, 1, 393231, 1, 1, 393232, 1, 1, 458768, 1, 1, 458767, 1, 1, 524299, 1, 1, 589835, 1, 1, 589836, 1, 1, 524300, 1, 1, 524307, 1, 1, 524308, 1, 1, 589844, 1, 1, 589843, 1, 1)
+
+[node name="Bit" parent="Bits" index="0"]
+position = Vector2(126, 43)
+
+[node name="Bit2" parent="Bits" index="1" instance=ExtResource("2_vvahr")]
+position = Vector2(130, 43)
+
+[node name="Bit3" parent="Bits" index="2" instance=ExtResource("2_vvahr")]
+position = Vector2(124, 46)
+
+[node name="Bit4" parent="Bits" index="3" instance=ExtResource("2_vvahr")]
+position = Vector2(128, 46)
+
+[node name="Bit5" parent="Bits" index="4" instance=ExtResource("2_vvahr")]
+position = Vector2(132, 46)

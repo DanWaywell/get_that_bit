@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="4_8g17u"]
 
 [node name="LevelBaseClass" type="Node2D"]
+metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_jlnk1")
 format = 2
+metadata/_edit_lock_ = true
 
 [node name="Character" parent="." instance=ExtResource("1_pana2")]
 position = Vector2(28, 76)
@@ -20,6 +22,7 @@ position = Vector2(228, 76)
 
 [node name="Bits" type="Node2D" parent="."]
 script = ExtResource("4_3egle")
+metadata/_edit_lock_ = true
 
 [node name="Bit" parent="Bits" instance=ExtResource("4_8g17u")]
 position = Vector2(128, 76)
