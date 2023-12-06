@@ -179,4 +179,4 @@ shape = SubResource("RectangleShape2D_iaw01")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="die"]
 [connection signal="timeout" from="LedgeGrabNode/Timer" to="LedgeGrabNode" method="_on_timer_timeout"]
-[connection signal="body_entered" from="AreaCrush" to="." method="crush"]
+[connection signal="body_entered" from="AreaCrush" to="." method="die" unbinds=1]
