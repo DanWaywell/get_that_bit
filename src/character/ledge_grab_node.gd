@@ -6,10 +6,10 @@ var jump_multiplyer := 1.1
 var ledge: Node2D = null
 
 @onready var character: Character = $".."
-@onready var ray_cast_down := $RayCastDown
-@onready var ray_cast_up := $RayCastUp
-@onready var ray_cast_forward := $RayCastForward
-@onready var timer := $Timer
+@onready var ray_cast_down: RayCast2D = $RayCastDown
+@onready var ray_cast_up: RayCast2D = $RayCastUp
+@onready var ray_cast_forward: RayCast2D = $RayCastForward
+@onready var timer: Timer = $Timer
 
 
 func _physics_process(_delta) -> void:
@@ -84,14 +84,14 @@ func _disable_ray_casts(value: bool = true):
 		ray_cast_up.enabled = true
 
 
-func _set_direction_of_node_to_character_direction():
+func _set_direction_of_node_to_character_direction() -> void:
 	if character.direction_facing == Vector2.LEFT:
 		scale.x = -1
 	else:
 		scale.x = 1
 
 
-func _keep_character_positioned_with_platform():
+func _keep_character_positioned_with_platform() -> void:
 	if scale.x == 1:
 		character.position.x = ledge.position.x - 11
 		character.position.y = ledge.position.y
@@ -100,7 +100,7 @@ func _keep_character_positioned_with_platform():
 		character.position.y = ledge.position.y
 
 
-func _position_character_to_ledge():
+func _position_character_to_ledge() -> void:
 	if character.direction_facing == Vector2.RIGHT:
 		character.position.x = ray_cast_forward.get_collision_point().x - 3
 		character.position.y = ray_cast_down.get_collision_point().y + 4

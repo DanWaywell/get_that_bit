@@ -2,7 +2,7 @@ extends Sprite2D
 
 var anim := "idle"
 
-@onready var animation_player := $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character: Character = $".."
 @onready var ledge_grab_node: Node2D = $"../LedgeGrabNode"
 
