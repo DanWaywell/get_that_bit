@@ -2,7 +2,8 @@ extends CharacterBody2D
 class_name Character
 ## Class to process basic platforming movement.
 ## Moving left and right and jumping.
-## With Functions for starting and stopping.
+## With functions for starting and stopping so other nodes
+## can take over, eg LedgeGrabNode.
 
 const SPEED = 46.0
 const DEFAULT_GRAVITY = 240.0
@@ -32,7 +33,6 @@ var _input := 0.0
 # Get input and process movement.
 func _physics_process(delta) -> void:
 	_input = Input.get_axis("left", "right")
-	_process_direction_facing()
 	
 	if not is_on_floor():
 		_air_time += delta
@@ -40,6 +40,7 @@ func _physics_process(delta) -> void:
 	else:
 		_air_time = 0.0
 	
+	_process_direction_facing()
 	_process_jumping()
 	_process_reduce_jump()
 	_process_x_movement()
@@ -81,7 +82,7 @@ func _process_gravity(delta) -> void:
 # Process jump with detection for early and late button presses.
 func _process_jumping() -> void:
 	if Input.is_action_just_pressed("jump"):
-		_timer_prejump.start()
+		_timer_prejump.start(PREJUMP_TIME)
 		
 	if not _timer_prejump.is_stopped() and _air_time < COYOTE_TIME:
 		if Input.is_action_pressed("jump"):

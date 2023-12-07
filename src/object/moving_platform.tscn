@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7k5x"]
 size = Vector2(16, 8)
 
-[node name="MovingPlatform" type="AnimatableBody2D"]
+[node name="MovingPlatform" type="AnimatableBody2D" groups=["moving_platform"]]
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

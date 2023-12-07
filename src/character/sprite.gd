@@ -7,14 +7,14 @@ var anim := "idle"
 @onready var ledge_grab_node: Node2D = $"../LedgeGrabNode"
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	if character.direction_facing == Vector2.LEFT:
 		flip_h = true
 	else:
 		flip_h = false
 	
 	var new_anim = ""
-	if ledge_grab_node.on_ledge:
+	if ledge_grab_node.holding_on_to_ledge:
 		new_anim = "grab_ledge"
 	elif character.is_on_floor():
 		if abs(character.velocity.x) < 1:
