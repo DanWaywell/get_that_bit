@@ -1,5 +1,7 @@
 extends Node
 
+enum {LEFT = -1, RIGHT = 1}
+
 const PATH_TITLE_SCREEN = "res://screen/title_screen.tscn"
 const PATH_END_SCREEN = "res://screen/end_screen.tscn"
 
