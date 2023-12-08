@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6tgfty1qdw4a"]
+[gd_scene load_steps=5 format=3 uid="uid://b6tgfty1qdw4a"]
 
 [ext_resource type="Texture2D" uid="uid://b6tw7cndx85hk" path="res://assets/sprites.png" id="1_0der0"]
 [ext_resource type="Script" path="res://object/bit.gd" id="1_3fkug"]
+[ext_resource type="AudioStream" uid="uid://i2h5p8hq47l6" path="res://assets/audio_pickup_bit_1.wav" id="3_bxssf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6pwx8"]
 size = Vector2(2, 2)
@@ -17,7 +18,12 @@ shape = SubResource("RectangleShape2D_6pwx8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_0der0")
+hframes = 2
 region_enabled = true
-region_rect = Rect2(0, 0, 8, 8)
+region_rect = Rect2(0, 0, 16, 8)
+
+[node name="AudioPickedUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bxssf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioPickedUp" to="." method="_on_audio_picked_up_finished"]

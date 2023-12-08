@@ -1,6 +1,7 @@
 extends Sprite2D
 
 var anim := "idle"
+var can_flip = true
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character: Character = $".."
@@ -8,13 +9,14 @@ var anim := "idle"
 
 
 func _physics_process(_delta) -> void:
-	if character.direction_facing == Vector2.LEFT:
-		flip_h = true
-	else:
-		flip_h = false
+	if can_flip:
+		if character.direction_facing == Game.RIGHT:
+			flip_h = false
+		else:
+			flip_h = true
 	
 	var new_anim = ""
-	if ledge_grab_node.holding_on_to_ledge:
+	if ledge_grab_node.is_holding_onto_ledge:
 		new_anim = "grab_ledge"
 	elif character.is_on_floor():
 		if abs(character.velocity.x) < 1:
