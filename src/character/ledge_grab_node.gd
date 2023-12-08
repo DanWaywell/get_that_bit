@@ -1,5 +1,10 @@
 extends Node2D
 
+const LEDGE_OFFSET_X = 3
+const LEDGE_OFFSET_Y = 5
+const MOVING_PLATFORM_X_OFFSET = 11
+const MOVING_PLATFORM_Y_OFFSET = 1
+
 var is_holding_onto_ledge := false
 var jump_multiplyer := 1.1
 
@@ -12,59 +17,49 @@ var ledge: Node2D = null
 @onready var timer: Timer = $Timer
 
 
-func _physics_process(_delta) -> void:
-	if not is_holding_onto_ledge:
-		
-		scale.x = character.direction_facing
-		
-		if ledge_is_there():
-			
-			set_holding_on_to_ledge(true)
-		
-	else:# is_holding_onto_ledge
-		if ledge_is_moving_platform():
-			keep_character_positioned_with_platform()
-		
-		if Input.is_action_just_pressed("jump"):
-			jump_off_ledge()
-			
-		elif Input.is_action_just_pressed("down"):
-			drop_off_ledge()
+func process(_delta) -> void:
+	if ledge_is_moving_platform():
+		keep_character_positioned_with_platform()
 
-# must be in contact with ledge
-func set_holding_on_to_ledge(value: bool = true):
-	if value == true:
-		is_holding_onto_ledge = true
-				
-		character.movement_node.stop()
-		
-		character.sprite.can_flip = false
-		
-		ledge = ray_cast_down.get_collider()
-		
-		disable_ray_casts()
 
-		
-		position_character_to_ledge()
+func check_for_ledge() -> void:
+	scale.x = character.direction_facing
 	
-	else:
+	if ledge_is_there():
+		grab_ledge()
+
+
+func check_to_leave_ledge_grab() -> void:
+	if Input.is_action_just_pressed("jump"):
+		jump_off_ledge()
+		
+	elif Input.is_action_just_pressed("down"):
+		let_go_of_ledge()
+
+
+# Ray must be in contact with ledge
+func grab_ledge() -> void:
+	is_holding_onto_ledge = true
+	
+	ledge = ray_cast_down.get_collider()
+	
+	disable_ray_casts()
+	
+	character.movement_node.stop()
+	
+	position_character_to_ledge()
+
+
+func let_go_of_ledge() -> void:
 		is_holding_onto_ledge = false
-		
-		character.movement_node.start()
-		
-		character.sprite.can_flip = true
 		
 		timer.start()# enable rays
 		
 
 func jump_off_ledge() -> void:
-	set_holding_on_to_ledge(false)
+	let_go_of_ledge()
 	character.movement_node.jump(jump_multiplyer)
 	
-	
-func drop_off_ledge() -> void:
-	set_holding_on_to_ledge(false)
-
 
 func ledge_is_there() -> bool:
 	if not character.is_on_floor()\
@@ -83,7 +78,7 @@ func ledge_is_moving_platform() -> bool:
 		return false
 
 
-func disable_ray_casts(value: bool = true):
+func disable_ray_casts(value: bool = true) -> void:
 	if value == true:
 		ray_cast_down.enabled = false
 		ray_cast_forward.enabled = false
@@ -95,21 +90,21 @@ func disable_ray_casts(value: bool = true):
 
 
 func keep_character_positioned_with_platform() -> void:
-	if scale.x == 1:
-		character.position.x = ledge.position.x - 11
-		character.position.y = ledge.position.y
+	if character.direction_facing == Game.RIGHT:
+		character.position.x = ledge.position.x - MOVING_PLATFORM_X_OFFSET
+		character.position.y = ledge.position.y + MOVING_PLATFORM_Y_OFFSET
 	else:
-		character.position.x = ledge.position.x + 11
-		character.position.y = ledge.position.y
+		character.position.x = ledge.position.x + MOVING_PLATFORM_X_OFFSET
+		character.position.y = ledge.position.y + MOVING_PLATFORM_Y_OFFSET
 
 
 func position_character_to_ledge() -> void:
 	if character.direction_facing == Game.RIGHT:
-		character.position.x = ray_cast_forward.get_collision_point().x - 3
-		character.position.y = ray_cast_down.get_collision_point().y + 4
+		character.position.x = ray_cast_forward.get_collision_point().x - LEDGE_OFFSET_X
+		character.position.y = ray_cast_down.get_collision_point().y + LEDGE_OFFSET_Y
 	else:
-		character.position.x = ray_cast_forward.get_collision_point().x + 3
-		character.position.y = ray_cast_down.get_collision_point().y + 4
+		character.position.x = ray_cast_forward.get_collision_point().x + LEDGE_OFFSET_X
+		character.position.y = ray_cast_down.get_collision_point().y + LEDGE_OFFSET_Y
 
 
 func _on_timer_timeout() -> void:

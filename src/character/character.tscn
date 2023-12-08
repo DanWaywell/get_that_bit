@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://faces6if3wk7" path="res://assets/audio_hurt_1.wav" id="7_k1u7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cikdt"]
-size = Vector2(6, 7)
+size = Vector2(6, 6)
 
 [sub_resource type="Animation" id="Animation_ogrma"]
 length = 0.001
@@ -137,7 +137,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iaw01"]
-size = Vector2(2, 3)
+size = Vector2(2, 2)
 
 [node name="Character" type="CharacterBody2D"]
 z_index = 1
@@ -145,7 +145,6 @@ collision_layer = 2
 script = ExtResource("1_3ncon")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_cikdt")
 
 [node name="MovementNode" type="Node2D" parent="."]
@@ -160,16 +159,16 @@ one_shot = true
 script = ExtResource("4_gi7m8")
 
 [node name="RayCastDown" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(4, -7)
+position = Vector2(4, -8)
 target_position = Vector2(0, 3)
 
 [node name="RayCastUp" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(1, -4)
+position = Vector2(1, -5)
 target_position = Vector2(3, -6)
 hit_from_inside = true
 
 [node name="RayCastForward" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(3, -2)
+position = Vector2(3, -3)
 target_position = Vector2(3, 0)
 hit_from_inside = true
 
@@ -179,6 +178,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
 texture = ExtResource("1_eqe5j")
 hframes = 4
 vframes = 4
@@ -202,9 +202,9 @@ stream = ExtResource("6_h1ec5")
 stream = ExtResource("7_k1u7h")
 
 [node name="AreaCrush" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCrush"]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_iaw01")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

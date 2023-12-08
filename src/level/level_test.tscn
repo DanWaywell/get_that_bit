@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://872lshdu54ct"]
+[gd_scene load_steps=7 format=3 uid="uid://872lshdu54ct"]
 
 [ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://level/level_1000_base_class.tscn" id="1_rm8ew"]
 [ext_resource type="PackedScene" uid="uid://blkaywmx1qos1" path="res://object/moving_platform.tscn" id="2_t7sdn"]
+[ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="2_wjh04"]
 
 [sub_resource type="Animation" id="Animation_pg0na"]
 length = 0.001
@@ -69,6 +70,54 @@ _data = {
 
 [node name="TileMap" parent="." index="0"]
 layer_0/tile_data = PackedInt32Array(655361, 65536, 0, 655362, 65536, 0, 655363, 65536, 0, 655364, 65536, 0, 655365, 65536, 0, 655366, 65536, 0, 655367, 65536, 0, 655368, 65536, 0, 655369, 65536, 0, 655370, 65536, 0, 655371, 65536, 0, 655372, 65536, 0, 655373, 65536, 0, 655374, 65536, 0, 655375, 65536, 0, 655376, 65536, 0, 655377, 65536, 0, 655378, 65536, 0, 655379, 65536, 0, 655380, 65536, 0, 655381, 65536, 0, 655382, 65536, 0, 655383, 65536, 0, 655384, 65536, 0, 655385, 65536, 0, 655386, 65536, 0, 655387, 65536, 0, 655388, 65536, 0, 655389, 65536, 0, 589832, 65536, 0, 589833, 65536, 0, 589834, 65536, 0, 589835, 65536, 0, 524299, 65536, 0, 524298, 65536, 0, 524297, 65536, 0, 458766, 65536, 0, 458767, 65536, 0, 458772, 65536, 0, 458771, 65536, 0, 393239, 65536, 0, 458775, 65536, 0, 524311, 65536, 0, 589847, 65536, 0, 524312, 65536, 0, 589848, 65536, 0)
+
+[node name="Bit" parent="Bits" index="0"]
+position = Vector2(76, 52)
+
+[node name="Bit2" parent="Bits" index="1" instance=ExtResource("2_wjh04")]
+position = Vector2(92, 52)
+
+[node name="Bit3" parent="Bits" index="2" instance=ExtResource("2_wjh04")]
+position = Vector2(84, 52)
+
+[node name="Bit4" parent="Bits" index="3" instance=ExtResource("2_wjh04")]
+position = Vector2(12, 60)
+
+[node name="Bit5" parent="Bits" index="4" instance=ExtResource("2_wjh04")]
+position = Vector2(20, 60)
+
+[node name="Bit6" parent="Bits" index="5" instance=ExtResource("2_wjh04")]
+position = Vector2(28, 60)
+
+[node name="Bit7" parent="Bits" index="6" instance=ExtResource("2_wjh04")]
+position = Vector2(36, 60)
+
+[node name="Bit8" parent="Bits" index="7" instance=ExtResource("2_wjh04")]
+position = Vector2(188, 44)
+
+[node name="Bit9" parent="Bits" index="8" instance=ExtResource("2_wjh04")]
+position = Vector2(196, 60)
+
+[node name="Bit10" parent="Bits" index="9" instance=ExtResource("2_wjh04")]
+position = Vector2(120, 40)
+
+[node name="Bit11" parent="Bits" index="10" instance=ExtResource("2_wjh04")]
+position = Vector2(116, 48)
+
+[node name="Bit12" parent="Bits" index="11" instance=ExtResource("2_wjh04")]
+position = Vector2(124, 48)
+
+[node name="Bit13" parent="Bits" index="12" instance=ExtResource("2_wjh04")]
+position = Vector2(176, 60)
+
+[node name="Bit14" parent="Bits" index="13" instance=ExtResource("2_wjh04")]
+position = Vector2(176, 68)
+
+[node name="Bit15" parent="Bits" index="14" instance=ExtResource("2_wjh04")]
+position = Vector2(176, 76)
+
+[node name="Bit16" parent="Bits" index="15" instance=ExtResource("2_wjh04")]
+position = Vector2(188, 36)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {

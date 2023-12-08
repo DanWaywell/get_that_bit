@@ -19,7 +19,7 @@ var air_time := 0.0
 @onready var character: Character = $".."
 
 
-func _physics_process(delta: float) -> void:
+func process(delta: float) -> void:
 	if not character.is_on_floor():
 		air_time += delta
 		process_gravity(delta)
@@ -32,23 +32,11 @@ func _physics_process(delta: float) -> void:
 	character.move_and_slide()
 
 
-## Stop the character physics process and reset values.
-func stop() -> void:
-	set_physics_process(false)
-	air_time = 0.0
-	character.velocity = Vector2()
-	timer_prejump.stop()
-
-
-## Start the character physics process.
-func start() -> void:
-	set_physics_process(true)
-
-
 ## Makes the character jump.
 ## Designed to be used with no arguments or just a multiplyer.
 func jump(multiplyer: float = 1.0, jump_velocity: float = JUMP_VELOCITY) -> void:
 	character.velocity.y = jump_velocity * multiplyer
+	character.sfx.play_jump()
 
 
 # Process Gravity and add multiplier for faster falling.
@@ -78,15 +66,20 @@ func process_reduce_jump() -> void:
 		character.velocity.y *= JUMP_REDUCTION
 
 
-# Process movement on ground and in air with acceleration and deceleration.
+# Process movement on ground or in air with acceleration and deceleration.
 func process_x_movement() -> void:
-	if character.input:
+	if character.x_input:
 		if character.is_on_floor():
-			character.velocity.x = lerp(character.velocity.x, character.input * SPEED, GROUND_ACCEL)
+			character.velocity.x = lerp(character.velocity.x, character.x_input * SPEED, GROUND_ACCEL)
 		else:
-			character.velocity.x = lerp(character.velocity.x, character.input * SPEED, AIR_ACCEL)
+			character.velocity.x = lerp(character.velocity.x, character.x_input * SPEED, AIR_ACCEL)
 	else:
 		if character.is_on_floor():
-			character.velocity.x = lerp(character.velocity.x, character.input * SPEED, GROUND_DECEL)
+			character.velocity.x = lerp(character.velocity.x, character.x_input * SPEED, GROUND_DECEL)
 		else:
 			character.velocity.x = lerp(character.velocity.x, 0.0, AIR_DECEL)
+
+
+func stop():
+	air_time = 0.0
+	timer_prejump.stop()

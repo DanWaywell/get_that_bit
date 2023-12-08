@@ -1,14 +1,14 @@
 extends Sprite2D
 
 var anim := "idle"
-var can_flip = true
+var can_flip := true
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character: Character = $".."
 @onready var ledge_grab_node: Node2D = $"../LedgeGrabNode"
 
 
-func _physics_process(_delta) -> void:
+func process(_delta) -> void:
 	if can_flip:
 		if character.direction_facing == Game.RIGHT:
 			flip_h = false
@@ -32,3 +32,7 @@ func _physics_process(_delta) -> void:
 	if new_anim != anim:
 		anim = new_anim
 		animation_player.play(anim)
+
+
+func play_explode() -> void:
+	animation_player.play("explode")
