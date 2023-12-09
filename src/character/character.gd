@@ -34,6 +34,7 @@ func die() -> void:
 	set_physics_process(false)
 	collision_shape.set_deferred("disabled", true)
 	area_crush.set_deferred("monitoring", false)
+	area_crush.set_deferred("monitorable", false)
 	sprite.play_explode()
 	sfx.play_explode()
 

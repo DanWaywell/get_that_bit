@@ -80,6 +80,7 @@ func process_x_movement() -> void:
 			character.velocity.x = lerp(character.velocity.x, 0.0, AIR_DECEL)
 
 
-func stop():
+func reset():
+	character.velocity = Vector2()
 	air_time = 0.0
 	timer_prejump.stop()
