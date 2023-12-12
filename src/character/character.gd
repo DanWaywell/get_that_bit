@@ -18,15 +18,6 @@ var x_input := 0.0
 
 func _physics_process(delta) -> void:
 	x_input = Input.get_axis("left", "right")
-	
-	if ledge_grab_node.is_holding_onto_ledge:
-		ledge_grab_node.process(delta)
-		ledge_grab_node.check_to_leave_ledge_grab()
-	else:
-		direction_facing = get_direction_facing(x_input, direction_facing)
-		movement_node.process(delta)
-		ledge_grab_node.check_for_ledge()
-		sprite.process(delta)
 
 
 ## Restart level.
@@ -37,16 +28,6 @@ func die() -> void:
 	area_crush.set_deferred("monitorable", false)
 	sprite.play_explode()
 	sfx.play_explode()
-
-
-# Set direction facing according to player input.
-func get_direction_facing(input, current_direction) -> int:
-	if input > 0:
-		return Game.RIGHT
-	elif input < 0:
-		return Game.LEFT
-	else:
-		return current_direction
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

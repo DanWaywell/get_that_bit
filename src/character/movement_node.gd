@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 const SPEED = 46.0
 const DEFAULT_GRAVITY = 240.0

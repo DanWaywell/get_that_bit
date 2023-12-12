@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 const LEDGE_OFFSET_X = 3
 const LEDGE_OFFSET_Y = 5

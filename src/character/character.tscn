@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://7vyxa0r88jw1"]
+[gd_scene load_steps=20 format=3 uid="uid://7vyxa0r88jw1"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_3ncon"]
 [ext_resource type="Texture2D" uid="uid://b6tw7cndx85hk" path="res://assets/sprites.png" id="1_eqe5j"]
 [ext_resource type="Script" path="res://character/movement_node.gd" id="2_00hrj"]
+[ext_resource type="Script" path="res://character/state_node.gd" id="2_74kb8"]
 [ext_resource type="Script" path="res://character/sprite.gd" id="3_j61fq"]
 [ext_resource type="Script" path="res://character/ledge_grab_node.gd" id="4_gi7m8"]
 [ext_resource type="Script" path="res://character/sfx.gd" id="5_lu0vx"]
@@ -147,37 +148,44 @@ script = ExtResource("1_3ncon")
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cikdt")
 
-[node name="MovementNode" type="Node2D" parent="."]
+[node name="StateNode" type="Node" parent="."]
+script = ExtResource("2_74kb8")
+
+[node name="MovementNode" type="Node" parent="StateNode"]
 script = ExtResource("2_00hrj")
 
-[node name="TimerPrejump" type="Timer" parent="MovementNode"]
+[node name="TimerPrejump" type="Timer" parent="StateNode/MovementNode"]
 process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="LedgeGrabNode" type="Node2D" parent="."]
+[node name="LedgeGrabNode" type="Node" parent="StateNode"]
 script = ExtResource("4_gi7m8")
 
-[node name="RayCastDown" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(4, -7)
-target_position = Vector2(0, 3)
-
-[node name="RayCastUp" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(1, -4)
-target_position = Vector2(3, -6)
-hit_from_inside = true
-
-[node name="RayCastForward" type="RayCast2D" parent="LedgeGrabNode"]
-position = Vector2(3, -2)
-target_position = Vector2(3, 0)
-hit_from_inside = true
-
-[node name="Timer" type="Timer" parent="LedgeGrabNode"]
+[node name="Timer" type="Timer" parent="StateNode/LedgeGrabNode"]
 process_callback = 0
 wait_time = 0.2
 one_shot = true
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="DirectionNode" type="Node2D" parent="."]
+
+[node name="LedgeGrabRays" type="Node2D" parent="DirectionNode"]
+
+[node name="RayCastDown" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
+position = Vector2(4, -7)
+target_position = Vector2(0, 3)
+
+[node name="RayCastUp" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
+position = Vector2(1, -4)
+target_position = Vector2(3, -6)
+hit_from_inside = true
+
+[node name="RayCastForward" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
+position = Vector2(3, -2)
+target_position = Vector2(3, 0)
+hit_from_inside = true
+
+[node name="Sprite" type="Sprite2D" parent="DirectionNode"]
 position = Vector2(0, -1)
 texture = ExtResource("1_eqe5j")
 hframes = 4
@@ -186,20 +194,20 @@ region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 script = ExtResource("3_j61fq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionNode/Sprite"]
 libraries = {
 "": SubResource("AnimationLibrary_6h0h7")
 }
 autoplay = "idle"
 
-[node name="Sfx" type="Node2D" parent="."]
+[node name="Sfx" type="Node2D" parent="DirectionNode"]
 script = ExtResource("5_lu0vx")
 
-[node name="AudioJump" type="AudioStreamPlayer2D" parent="Sfx"]
+[node name="AudioJump" type="AudioStreamPlayer2D" parent="DirectionNode/Sfx"]
 stream = ExtResource("6_h1ec5")
 volume_db = -10.0
 
-[node name="AudioExplode" type="AudioStreamPlayer2D" parent="Sfx"]
+[node name="AudioExplode" type="AudioStreamPlayer2D" parent="DirectionNode/Sfx"]
 stream = ExtResource("7_k1u7h")
 
 [node name="AreaCrush" type="Area2D" parent="."]
@@ -211,6 +219,6 @@ shape = SubResource("RectangleShape2D_iaw01")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -1)
 
-[connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="DirectionNode/Sprite/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AreaCrush" to="." method="die" unbinds=1]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="die"]
