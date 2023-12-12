@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://7vyxa0r88jw1"]
+[gd_scene load_steps=21 format=3 uid="uid://7vyxa0r88jw1"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_3ncon"]
 [ext_resource type="Texture2D" uid="uid://b6tw7cndx85hk" path="res://assets/sprites.png" id="1_eqe5j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://character/state_node.gd" id="2_74kb8"]
 [ext_resource type="Script" path="res://character/sprite.gd" id="3_j61fq"]
 [ext_resource type="Script" path="res://character/ledge_grab_node.gd" id="4_gi7m8"]
+[ext_resource type="Script" path="res://character/direction_node.gd" id="5_ihqen"]
 [ext_resource type="Script" path="res://character/sfx.gd" id="5_lu0vx"]
 [ext_resource type="AudioStream" uid="uid://dvfkkw2qy6ocm" path="res://assets/audio_jump_1.wav" id="6_h1ec5"]
 [ext_resource type="AudioStream" uid="uid://faces6if3wk7" path="res://assets/audio_hurt_1.wav" id="7_k1u7h"]
@@ -148,10 +149,10 @@ script = ExtResource("1_3ncon")
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cikdt")
 
-[node name="StateNode" type="Node" parent="."]
+[node name="StateNode" type="Node2D" parent="."]
 script = ExtResource("2_74kb8")
 
-[node name="MovementNode" type="Node" parent="StateNode"]
+[node name="MovementNode" type="Node2D" parent="StateNode"]
 script = ExtResource("2_00hrj")
 
 [node name="TimerPrejump" type="Timer" parent="StateNode/MovementNode"]
@@ -159,7 +160,12 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="LedgeGrabNode" type="Node" parent="StateNode"]
+[node name="TimerDelay" type="Timer" parent="StateNode/MovementNode"]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="LedgeGrabNode" type="Node2D" parent="StateNode"]
 script = ExtResource("4_gi7m8")
 
 [node name="Timer" type="Timer" parent="StateNode/LedgeGrabNode"]
@@ -168,6 +174,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DirectionNode" type="Node2D" parent="."]
+script = ExtResource("5_ihqen")
 
 [node name="LedgeGrabRays" type="Node2D" parent="DirectionNode"]
 
@@ -200,14 +207,14 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="Sfx" type="Node2D" parent="DirectionNode"]
+[node name="Sfx" type="Node2D" parent="."]
 script = ExtResource("5_lu0vx")
 
-[node name="AudioJump" type="AudioStreamPlayer2D" parent="DirectionNode/Sfx"]
+[node name="AudioJump" type="AudioStreamPlayer2D" parent="Sfx"]
 stream = ExtResource("6_h1ec5")
 volume_db = -10.0
 
-[node name="AudioExplode" type="AudioStreamPlayer2D" parent="DirectionNode/Sfx"]
+[node name="AudioExplode" type="AudioStreamPlayer2D" parent="Sfx"]
 stream = ExtResource("7_k1u7h")
 
 [node name="AreaCrush" type="Area2D" parent="."]

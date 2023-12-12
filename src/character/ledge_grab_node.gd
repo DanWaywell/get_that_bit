@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 const LEDGE_OFFSET_X = 3
 const LEDGE_OFFSET_Y = 5
@@ -10,11 +10,14 @@ var jump_multiplyer := 1.1
 
 var ledge: Node2D = null
 
-@onready var character: Character = $".."
-@onready var ray_cast_down: RayCast2D = $RayCastDown
-@onready var ray_cast_up: RayCast2D = $RayCastUp
-@onready var ray_cast_forward: RayCast2D = $RayCastForward
+@onready var character: Character = $"../.."
+@onready var state_node: Node2D = $".."
+@onready var movement_node: Node2D = $"../MovementNode"
+
 @onready var timer: Timer = $Timer
+@onready var ray_cast_down: RayCast2D = $"../../DirectionNode/LedgeGrabRays/RayCastDown"
+@onready var ray_cast_up: RayCast2D = $"../../DirectionNode/LedgeGrabRays/RayCastUp"
+@onready var ray_cast_forward: RayCast2D = $"../../DirectionNode/LedgeGrabRays/RayCastForward"
 
 
 func process(_delta) -> void:
@@ -22,8 +25,7 @@ func process(_delta) -> void:
 		keep_character_positioned_with_platform()
 
 
-func check_for_ledge() -> void:
-	scale.x = character.direction_facing
+func check_for_ledge_grab() -> void:
 	if timer.is_stopped():
 		if ledge_is_there():
 			grab_ledge()
@@ -38,20 +40,20 @@ func check_to_leave_ledge_grab() -> void:
 
 # Ray must be in contact with ledge
 func grab_ledge() -> void:
-	is_holding_onto_ledge = true
-	character.movement_node.reset()
+	state_node.change_state_to(state_node.LEDGE_GRAB)
+	movement_node.reset()
 	ledge = ray_cast_forward.get_collider()
 	position_character_to_ledge()
 
 
 func let_go_of_ledge() -> void:
-	is_holding_onto_ledge = false
+	state_node.change_state_to(state_node.NORMAL_MOVEMENT)
 	timer.start()
 		
 
 func jump_off_ledge() -> void:
 	let_go_of_ledge()
-	character.movement_node.jump(jump_multiplyer)
+	movement_node.jump(jump_multiplyer)
 	
 
 func ledge_is_there() -> bool:

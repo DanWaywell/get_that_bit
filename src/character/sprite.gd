@@ -1,22 +1,15 @@
 extends Sprite2D
 
 var anim := "idle"
-var can_flip := true
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var character: Character = $".."
-@onready var ledge_grab_node: Node2D = $"../LedgeGrabNode"
+@onready var character: Character = $"../.."
+@onready var state_node: Node2D = $"../../StateNode"
 
 
 func process(_delta) -> void:
-	if can_flip:
-		if character.direction_facing == Game.RIGHT:
-			flip_h = false
-		else:
-			flip_h = true
-	
 	var new_anim = ""
-	if ledge_grab_node.is_holding_onto_ledge:
+	if state_node.state == state_node.LEDGE_GRAB:
 		new_anim = "grab_ledge"
 	elif character.is_on_floor():
 		if abs(character.velocity.x) < 1:

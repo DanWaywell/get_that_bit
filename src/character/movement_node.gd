@@ -1,11 +1,11 @@
-extends Node
+extends Node2D
 
 const SPEED = 46.0
 const DEFAULT_GRAVITY = 240.0
 const FALL_MULTIPLYER = 1.1
 const JUMP_VELOCITY = -70.0
+const JUMP_REDUCTION = 0.5
 const COYOTE_TIME = 0.1
-const JUMP_REDUCTION = 0.4
 const PREJUMP_TIME = 0.1
 const GROUND_ACCEL = 0.5
 const GROUND_DECEL = 0.4
@@ -14,9 +14,11 @@ const AIR_DECEL = 0.02
 
 var gravity := DEFAULT_GRAVITY
 var air_time := 0.0
+var jumped := false
 
+@onready var character: Character = $"../.."
 @onready var timer_prejump := $TimerPrejump
-@onready var character: Character = $".."
+@onready var sfx: Node2D = $"../../Sfx"
 
 
 func process(delta: float) -> void:
@@ -25,6 +27,7 @@ func process(delta: float) -> void:
 		process_gravity(delta)
 	else:
 		air_time = 0.0
+		jumped = false
 	
 	process_jumping()
 	process_reduce_jump()
@@ -35,8 +38,10 @@ func process(delta: float) -> void:
 ## Makes the character jump.
 ## Designed to be used with no arguments or just a multiplyer.
 func jump(multiplyer: float = 1.0, jump_velocity: float = JUMP_VELOCITY) -> void:
-	character.velocity.y = jump_velocity * multiplyer
-	character.sfx.play_jump()
+	if not jumped:
+		jumped = true
+		character.velocity.y = jump_velocity * multiplyer
+		sfx.play_jump()
 
 
 # Process Gravity and add multiplier for faster falling.
@@ -62,7 +67,8 @@ func process_jumping() -> void:
 
 # Process jump reduction.
 func process_reduce_jump() -> void:
-	if character.velocity.y < 0 and Input.is_action_just_released("jump"):
+	if character.velocity.y < 0 and Input.is_action_just_released("jump") and jumped:
+		
 		character.velocity.y *= JUMP_REDUCTION
 
 
@@ -83,4 +89,5 @@ func process_x_movement() -> void:
 func reset():
 	character.velocity = Vector2()
 	air_time = 0.0
+	jumped = false
 	timer_prejump.stop()
