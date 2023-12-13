@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7vyxa0r88jw1"]
+[gd_scene load_steps=24 format=3 uid="uid://7vyxa0r88jw1"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_3ncon"]
 [ext_resource type="Texture2D" uid="uid://b6tw7cndx85hk" path="res://assets/sprites.png" id="1_eqe5j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://character/state_node.gd" id="2_74kb8"]
 [ext_resource type="Script" path="res://character/sprite.gd" id="3_j61fq"]
 [ext_resource type="Script" path="res://character/ledge_grab_node.gd" id="4_gi7m8"]
+[ext_resource type="Script" path="res://character/dash_node.gd" id="5_fk1ya"]
 [ext_resource type="Script" path="res://character/direction_node.gd" id="5_ihqen"]
 [ext_resource type="Script" path="res://character/sfx.gd" id="5_lu0vx"]
 [ext_resource type="AudioStream" uid="uid://dvfkkw2qy6ocm" path="res://assets/audio_jump_1.wav" id="6_h1ec5"]
@@ -13,6 +14,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cikdt"]
 size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnkkl"]
+size = Vector2(4, 4)
 
 [sub_resource type="Animation" id="Animation_ogrma"]
 length = 0.001
@@ -27,6 +31,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j5mkg"]
+resource_name = "dash"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_cvn2f"]
@@ -130,6 +151,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6h0h7"]
 _data = {
 "RESET": SubResource("Animation_ogrma"),
+"dash": SubResource("Animation_j5mkg"),
 "explode": SubResource("Animation_cvn2f"),
 "fall": SubResource("Animation_xfnvw"),
 "grab_ledge": SubResource("Animation_m5w8m"),
@@ -142,12 +164,16 @@ _data = {
 size = Vector2(2, 2)
 
 [node name="Character" type="CharacterBody2D"]
-z_index = 1
 collision_layer = 2
 script = ExtResource("1_3ncon")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cikdt")
+
+[node name="DashCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wnkkl")
+disabled = true
 
 [node name="StateNode" type="Node2D" parent="."]
 script = ExtResource("2_74kb8")
@@ -160,11 +186,6 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="TimerDelay" type="Timer" parent="StateNode/MovementNode"]
-process_callback = 0
-wait_time = 0.1
-one_shot = true
-
 [node name="LedgeGrabNode" type="Node2D" parent="StateNode"]
 script = ExtResource("4_gi7m8")
 
@@ -173,22 +194,30 @@ process_callback = 0
 wait_time = 0.2
 one_shot = true
 
+[node name="DashNode" type="Node2D" parent="StateNode"]
+script = ExtResource("5_fk1ya")
+
+[node name="Timer" type="Timer" parent="StateNode/DashNode"]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
 [node name="DirectionNode" type="Node2D" parent="."]
 script = ExtResource("5_ihqen")
 
 [node name="LedgeGrabRays" type="Node2D" parent="DirectionNode"]
 
 [node name="RayCastDown" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
-position = Vector2(4, -7)
+position = Vector2(4, -8)
 target_position = Vector2(0, 3)
 
 [node name="RayCastUp" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
-position = Vector2(1, -4)
+position = Vector2(1, -5)
 target_position = Vector2(3, -6)
 hit_from_inside = true
 
 [node name="RayCastForward" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
-position = Vector2(3, -2)
+position = Vector2(3, -3)
 target_position = Vector2(3, 0)
 hit_from_inside = true
 

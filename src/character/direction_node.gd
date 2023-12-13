@@ -10,3 +10,7 @@ func process() -> void:
 	elif character.x_input < 0:
 		scale.x = Game.LEFT
 		character.direction_facing = Game.LEFT
+
+func flip_direction() -> void:
+	scale.x *= -1
+	character.direction_facing  *= -1

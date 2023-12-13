@@ -7,9 +7,11 @@ var anim := "idle"
 @onready var state_node: Node2D = $"../../StateNode"
 
 
-func process(_delta) -> void:
+func process() -> void:
 	var new_anim = ""
-	if state_node.state == state_node.LEDGE_GRAB:
+	if state_node.state == state_node.DASH:
+		new_anim = "dash"
+	elif state_node.state == state_node.LEDGE_GRAB:
 		new_anim = "grab_ledge"
 	elif character.is_on_floor():
 		if abs(character.velocity.x) < 1:
