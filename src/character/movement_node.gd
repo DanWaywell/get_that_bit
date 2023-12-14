@@ -56,11 +56,11 @@ func process_gravity(delta) -> void:
 
 # Process jump with detection for early and late button presses.
 func process_jumping() -> void:
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed(character.btn_jump):
 		timer_prejump.start(PREJUMP_TIME)
 		
 	if not timer_prejump.is_stopped() and air_time < COYOTE_TIME:
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_pressed(character.btn_jump):
 			jump()
 		else:
 			jump(JUMP_REDUCTION)
@@ -69,7 +69,7 @@ func process_jumping() -> void:
 
 # Process jump reduction.
 func process_reduce_jump() -> void:
-	if character.velocity.y < 0 and Input.is_action_just_released("jump") and jumped:
+	if character.velocity.y < 0 and Input.is_action_just_released(character.btn_jump) and jumped:
 		
 		character.velocity.y *= JUMP_REDUCTION
 

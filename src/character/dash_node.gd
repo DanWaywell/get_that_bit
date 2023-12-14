@@ -14,7 +14,7 @@ var times_dashed = 0
 
 
 func check_for_dash():
-	if Input.is_action_just_pressed("dash") and times_dashed < 1:
+	if Input.is_action_just_pressed(character.btn_dash) and times_dashed < 1:
 		state_node.change_state_to(state_node.DASH)
 
 

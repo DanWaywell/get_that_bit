@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://872lshdu54ct"]
+[gd_scene load_steps=9 format=3 uid="uid://872lshdu54ct"]
 
 [ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://level/level_1000_base_class.tscn" id="1_rm8ew"]
+[ext_resource type="PackedScene" uid="uid://7vyxa0r88jw1" path="res://character/character.tscn" id="2_ov0yg"]
 [ext_resource type="PackedScene" uid="uid://blkaywmx1qos1" path="res://object/moving_platform.tscn" id="2_t7sdn"]
 [ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://object/bit.tscn" id="2_wjh04"]
 [ext_resource type="PackedScene" uid="uid://dngyf88aa1faj" path="res://object/bouncy_thing.tscn" id="4_dk8iq"]
@@ -75,6 +76,10 @@ layer_0/tile_data = PackedInt32Array(655361, 65536, 0, 655362, 65536, 0, 655363,
 [node name="Character" parent="." index="1"]
 position = Vector2(28, 77)
 
+[node name="Character2" parent="." index="2" instance=ExtResource("2_ov0yg")]
+position = Vector2(20, 77)
+player_number = 2
+
 [node name="Bit" parent="Bits" index="0"]
 position = Vector2(76, 52)
 
@@ -123,47 +128,47 @@ position = Vector2(176, 76)
 [node name="Bit16" parent="Bits" index="15" instance=ExtResource("2_wjh04")]
 position = Vector2(188, 36)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {
 "": SubResource("AnimationLibrary_1wvp7")
 }
 autoplay = "move_platforms"
 
-[node name="MovingPlatform" parent="." index="5" instance=ExtResource("2_t7sdn")]
+[node name="MovingPlatform" parent="." index="6" instance=ExtResource("2_t7sdn")]
 position = Vector2(104, 60)
 
-[node name="MovingPlatform2" parent="." index="6" instance=ExtResource("2_t7sdn")]
+[node name="MovingPlatform2" parent="." index="7" instance=ExtResource("2_t7sdn")]
 position = Vector2(176, 76)
 
-[node name="BouncyThing" parent="." index="7" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing" parent="." index="8" instance=ExtResource("4_dk8iq")]
 position = Vector2(12, 68)
 
-[node name="BouncyThing6" parent="." index="8" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing6" parent="." index="9" instance=ExtResource("4_dk8iq")]
 position = Vector2(12, 52)
 
-[node name="BouncyThing7" parent="." index="9" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing7" parent="." index="10" instance=ExtResource("4_dk8iq")]
 position = Vector2(12, 36)
 
-[node name="BouncyThing8" parent="." index="10" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing8" parent="." index="11" instance=ExtResource("4_dk8iq")]
 position = Vector2(12, 20)
 
-[node name="BouncyThing2" parent="." index="11" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing2" parent="." index="12" instance=ExtResource("4_dk8iq")]
 position = Vector2(36, 52)
 
-[node name="BouncyThing3" parent="." index="12" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing3" parent="." index="13" instance=ExtResource("4_dk8iq")]
 position = Vector2(68, 52)
 
-[node name="BouncyThing4" parent="." index="13" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing4" parent="." index="14" instance=ExtResource("4_dk8iq")]
 position = Vector2(108, 44)
 
-[node name="BouncyThing5" parent="." index="14" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing5" parent="." index="15" instance=ExtResource("4_dk8iq")]
 position = Vector2(156, 44)
 
-[node name="BouncyThing9" parent="." index="15" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing9" parent="." index="16" instance=ExtResource("4_dk8iq")]
 position = Vector2(140, 80)
 
-[node name="BouncyThing10" parent="." index="16" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing10" parent="." index="17" instance=ExtResource("4_dk8iq")]
 position = Vector2(212, 80)
 
-[node name="BouncyThing11" parent="." index="17" instance=ExtResource("4_dk8iq")]
+[node name="BouncyThing11" parent="." index="18" instance=ExtResource("4_dk8iq")]
 position = Vector2(52, 80)

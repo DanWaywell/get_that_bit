@@ -32,9 +32,9 @@ func check_for_ledge_grab() -> void:
 
 
 func check_to_leave_ledge_grab() -> void:
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed(character.btn_jump):
 		jump_off_ledge()
-	elif Input.is_action_just_pressed("down"):
+	elif Input.is_action_just_pressed(character.btn_down):
 		let_go_of_ledge()
 
 

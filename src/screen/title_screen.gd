@@ -8,7 +8,7 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump1"):
 		Game.start()
 
 
