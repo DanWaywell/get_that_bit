@@ -22,10 +22,8 @@ func die() -> void:
 	state_node.change_state_to(state_node.DIE)
 
 
-func bounce(bounce_vel: float = 0.0) -> void:
-	velocity.y = -bounce_vel
-	$StateNode/DashNode.times_dashed = 0
-	$StateNode/MovementNode.jumped = false
+func bounce(bounce_velocity := 100.0) -> void:
+	state_node.movement_node.bounce(bounce_velocity)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

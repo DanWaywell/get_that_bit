@@ -17,6 +17,7 @@ var air_time := 0.0
 var jumped := false
 
 @onready var character: Character = $"../.."
+@onready var dash_node: Node2D = $"../DashNode"
 @onready var timer_prejump := $TimerPrejump
 @onready var sfx: Node2D = $"../../Sfx"
 
@@ -92,3 +93,8 @@ func reset():
 	air_time = 0.0
 	jumped = false
 	timer_prejump.stop()
+
+func bounce(bounce_velocity := 100.0) -> void:
+	jumped = false
+	character.velocity.y = -bounce_velocity
+	dash_node.times_dashed = 0
