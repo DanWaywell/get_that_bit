@@ -158,3 +158,12 @@ position = Vector2(108, 44)
 
 [node name="BouncyThing5" parent="." index="14" instance=ExtResource("4_dk8iq")]
 position = Vector2(156, 44)
+
+[node name="BouncyThing9" parent="." index="15" instance=ExtResource("4_dk8iq")]
+position = Vector2(140, 80)
+
+[node name="BouncyThing10" parent="." index="16" instance=ExtResource("4_dk8iq")]
+position = Vector2(212, 80)
+
+[node name="BouncyThing11" parent="." index="17" instance=ExtResource("4_dk8iq")]
+position = Vector2(52, 80)
