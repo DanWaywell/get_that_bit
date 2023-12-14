@@ -30,7 +30,8 @@ func process(delta: float) -> void:
 		jumped = false
 	
 	process_jumping()
-	process_reduce_jump()
+	if jumped:
+		process_reduce_jump()
 	process_x_movement()
 	character.move_and_slide()
 

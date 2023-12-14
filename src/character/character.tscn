@@ -212,8 +212,8 @@ position = Vector2(4, -8)
 target_position = Vector2(0, 3)
 
 [node name="RayCastUp" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
-position = Vector2(1, -5)
-target_position = Vector2(3, -6)
+position = Vector2(4, -8)
+target_position = Vector2(0, -3)
 hit_from_inside = true
 
 [node name="RayCastForward" type="RayCast2D" parent="DirectionNode/LedgeGrabRays"]
