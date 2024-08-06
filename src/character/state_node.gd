@@ -71,6 +71,7 @@ func change_state_to(new_state: int) -> void:
 			LEDGE_GRAB:
 				dash_node.reset_dash()
 			DIE:
+				character.velocity = Vector2()
 				collision_shape.set_deferred("disabled", true)
 				sprite.play_explode()
 				sfx.play_explode()
