@@ -98,3 +98,4 @@ func bounce(bounce_velocity := 100.0) -> void:
 	jumped = false
 	character.velocity.y = -bounce_velocity
 	dash_node.times_dashed = 0
+	sfx.play_jump()
