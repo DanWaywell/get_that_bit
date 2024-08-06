@@ -15,7 +15,7 @@ format = 2
 metadata/_edit_lock_ = true
 
 [node name="Character" parent="." instance=ExtResource("1_pana2")]
-position = Vector2(28, 76)
+position = Vector2(28, 77)
 
 [node name="Door" parent="." instance=ExtResource("2_fcks6")]
 position = Vector2(228, 76)
