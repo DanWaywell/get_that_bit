@@ -31,7 +31,7 @@ func _ready() -> void:
 	state_node.change_state_to(state_node.NORMAL_MOVEMENT)
 
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	x_input = Input.get_axis(btn_left, btn_right)
 
 
