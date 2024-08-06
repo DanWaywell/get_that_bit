@@ -13,4 +13,7 @@ func process() -> void:
 
 func flip_direction() -> void:
 	scale.x *= -1
-	character.direction_facing  *= -1
+	if scale.x == -1:
+		character.direction_facing  = Game.LEFT
+	else:
+		character.direction_facing  = Game.RIGHT

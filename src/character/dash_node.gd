@@ -2,6 +2,7 @@ extends Node2D
 
 const DASH_SPEED = 120.0
 const DASH_DURATION = 0.1
+const VELOCITY_DIVIDER = 1.5
 
 var times_dashed = 0
 
@@ -41,7 +42,7 @@ func check_to_stop_dash():
 
 
 func stop_dash():
-	character.velocity.x /= 2
+	character.velocity.x /= VELOCITY_DIVIDER
 	collision_shape.set_deferred("disabled", false)
 	dash_collision_shape.set_deferred("disabled", true)
 
