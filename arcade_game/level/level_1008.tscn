@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://dux71tjh88640"]
+
+[ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://arcade_game/level/level_1000_base_class.tscn" id="1_rf72s"]
+[ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://arcade_game/object/bit.tscn" id="2_etgyk"]
+[ext_resource type="PackedScene" uid="uid://blkaywmx1qos1" path="res://arcade_game/object/moving_platform.tscn" id="2_y2t55"]
+
+[sub_resource type="Animation" id="Animation_ei8w7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 84)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MovingPlatform2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(136, 84)]
+}
+
+[sub_resource type="Animation" id="Animation_wkpxo"]
+resource_name = "move_platforms"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 84), Vector2(71, 84)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MovingPlatform2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(136, 84), Vector2(184, 84)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rdql3"]
+_data = {
+"RESET": SubResource("Animation_ei8w7"),
+"move_platforms": SubResource("Animation_wkpxo")
+}
+
+[node name="Level1008" instance=ExtResource("1_rf72s")]
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(655362, 65536, 0, 655363, 65536, 0, 655364, 65536, 0, 655387, 65536, 0, 655388, 65536, 0, 655389, 65536, 0, 655366, 65536, 0, 655365, 65536, 0, 655386, 65536, 0, 655385, 65536, 0, 655384, 65536, 0, 655367, 65536, 0)
+
+[node name="Bit" parent="Bits" index="0"]
+position = Vector2(128, 68)
+
+[node name="Bit2" parent="Bits" index="1" instance=ExtResource("2_etgyk")]
+position = Vector2(72, 76)
+
+[node name="Bit3" parent="Bits" index="2" instance=ExtResource("2_etgyk")]
+position = Vector2(184, 76)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_rdql3")
+}
+autoplay = "move_platforms"
+
+[node name="MovingPlatform" parent="." index="5" instance=ExtResource("2_y2t55")]
+position = Vector2(120, 84)
+
+[node name="MovingPlatform2" parent="." index="6" instance=ExtResource("2_y2t55")]
+position = Vector2(136, 84)

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://blfpj1whnbn1h"]
+
+[ext_resource type="Texture2D" uid="uid://cgn3do3knpnul" path="res://arcade_game/assets/title_image.png" id="2_loxo0"]
+[ext_resource type="Script" path="res://arcade_game/screen/title_screen.gd" id="2_r7je4"]
+[ext_resource type="Texture2D" uid="uid://ydros7d3ljpu" path="res://arcade_game/assets/button_start_normal.png" id="3_eu8gf"]
+[ext_resource type="Texture2D" uid="uid://d1rxxfs2k02gk" path="res://arcade_game/assets/button_start_pressed.png" id="4_y25je"]
+[ext_resource type="Texture2D" uid="uid://bfkmnthwtjmmi" path="res://arcade_game/assets/button_start_hover.png" id="5_8dohg"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_r7je4")
+
+[node name="TextureTitle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_loxo0")
+
+[node name="ButtonStart" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 99.0
+offset_right = 155.0
+offset_bottom = 125.0
+texture_normal = ExtResource("3_eu8gf")
+texture_pressed = ExtResource("4_y25je")
+texture_hover = ExtResource("5_8dohg")
+
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]

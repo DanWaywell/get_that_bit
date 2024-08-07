@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://crto2amk2svbb"]
+
+[ext_resource type="Script" path="res://arcade_game/screen/end_screen.gd" id="1_jwvl0"]
+[ext_resource type="Texture2D" uid="uid://ccqx8i4llk4v2" path="res://arcade_game/assets/end_image.png" id="1_ukc56"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwvl0")
+
+[node name="TextureEnd" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -72.0
+offset_right = 128.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ukc56")
+
+[node name="TimerRestart" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="TimerRestart" to="." method="_on_timer_restart_timeout"]
