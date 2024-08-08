@@ -1,5 +1,9 @@
 extends Control
 
+var Game
+
+func _ready() -> void:
+	Game = get_parent()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("jump1")\

@@ -45,4 +45,4 @@ func bounce(bounce_velocity := 100.0) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "explode":
-		Game.reset_level()
+		get_parent().Game.reset_level()

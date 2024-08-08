@@ -16,4 +16,4 @@ func _open_door():
 
 func _on_body_entered(body):
 	if body is Character and door_open:
-		Game.go_to_next_level()
+		get_parent().Game.go_to_next_level()

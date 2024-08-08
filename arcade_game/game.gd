@@ -17,7 +17,7 @@ var level_path : String = PATH_FIRST_LEVEL
 func _process(_delta):
 	# Quit
 	if Input.is_action_just_pressed("ui_cancel"):
-		if get_tree().current_scene.name == "TitleScreen":
+		if get_child(0).name == "TitleScreen":
 			if OS.get_name() == "Web":
 				return
 			else:
@@ -55,7 +55,7 @@ func go_to_next_level():
 
 
 func reset_level():
-	get_tree().call_deferred("reload_current_scene")
+	_change_scene_to(level_path)
 
 
 func go_to_title_screen():
@@ -69,7 +69,7 @@ func _change_to_level(number: int):
 		level_path = path
 		_change_scene_to(path)
 	else:
-		print("Error from Game._change_to_level(). Level doesn't exist")
+		print("Error! Level doesn't exist")
 
 
 func _build_level_path_from_number(number: int) -> String:
@@ -78,7 +78,10 @@ func _build_level_path_from_number(number: int) -> String:
 
 
 func _change_scene_to(path: String):
-	get_tree().call_deferred("change_scene_to_file", path)
+	get_child(0).queue_free()
+	var scene = load(path).instantiate()
+	call_deferred("add_child", scene)
+
 
 
 func _go_to_end_screen():

@@ -1,9 +1,12 @@
 extends Control
 
+var Game
+
 @onready var button_start: TextureButton = $ButtonStart
 
 
 func _ready():
+	Game = get_parent()
 	button_start.grab_focus()
 
 
