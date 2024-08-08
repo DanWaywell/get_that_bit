@@ -24,7 +24,7 @@ func start_dash():
 			direction_node.flip_direction()
 	
 	character.velocity.y = 0.0
-	character.velocity.x = DASH_SPEED * character.direction_facing
+	character.velocity.x = DASH_SPEED * character.direction_facing.x
 	timer.start(DASH_DURATION)
 	collision_shape.set_deferred("disabled", true)
 	dash_collision_shape.set_deferred("disabled", false)

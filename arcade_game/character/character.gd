@@ -4,7 +4,7 @@ class_name Character
 @export var player_number = 1
 
 ## Direction the character is facing.
-var direction_facing := Game.RIGHT
+var direction_facing := Vector2.RIGHT
 
 ## Store player input.
 var x_input := 0.0

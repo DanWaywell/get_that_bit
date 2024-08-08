@@ -5,15 +5,15 @@ extends Node2D
 
 func process() -> void:
 	if character.x_input > 0:
-		scale.x = Game.RIGHT
-		character.direction_facing = Game.RIGHT
+		character.direction_facing = Vector2.RIGHT
+		scale.x = character.direction_facing.x
 	elif character.x_input < 0:
-		scale.x = Game.LEFT
-		character.direction_facing = Game.LEFT
+		character.direction_facing = Vector2.LEFT
+		scale.x = character.direction_facing.x
 
 func flip_direction() -> void:
 	scale.x *= -1
 	if scale.x == -1:
-		character.direction_facing  = Game.LEFT
+		character.direction_facing  = Vector2.LEFT
 	else:
-		character.direction_facing  = Game.RIGHT
+		character.direction_facing  = Vector2.RIGHT

@@ -71,7 +71,7 @@ func ledge_is_there() -> bool:
 
 
 func keep_character_positioned_with_platform() -> void:
-	if character.direction_facing == Game.RIGHT:
+	if character.direction_facing == Vector2.RIGHT:
 		character.position.x = ledge.position.x - MOVING_PLATFORM_X_OFFSET
 		character.position.y = ledge.position.y + MOVING_PLATFORM_Y_OFFSET
 	else:
@@ -80,7 +80,7 @@ func keep_character_positioned_with_platform() -> void:
 
 
 func position_character_to_ledge() -> void:
-	if character.direction_facing == Game.RIGHT:
+	if character.direction_facing == Vector2.RIGHT:
 		character.position.x = ray_cast_forward.get_collision_point().x - LEDGE_OFFSET_X
 		character.position.y = ray_cast_down.get_collision_point().y + LEDGE_OFFSET_Y
 	else:
