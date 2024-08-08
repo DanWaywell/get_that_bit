@@ -9,9 +9,9 @@ var anim := "idle"
 
 func process() -> void:
 	var new_anim = ""
-	if state_node.state == state_node.DASH:
+	if state_node.state == state_node.States.DASH:
 		new_anim = "dash"
-	elif state_node.state == state_node.LEDGE_GRAB:
+	elif state_node.state == state_node.States.LEDGE_GRAB:
 		new_anim = "grab_ledge"
 	elif character.is_on_floor():
 		if abs(character.velocity.x) < 1:

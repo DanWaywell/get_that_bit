@@ -28,7 +28,7 @@ func _ready() -> void:
 	btn_jump += str(player_number)
 	btn_dash += str(player_number)
 	
-	state_node.change_state_to(state_node.NORMAL_MOVEMENT)
+	state_node.change_state_to(state_node.States.NORMAL_MOVEMENT)
 
 
 func _physics_process(_delta) -> void:
@@ -36,7 +36,7 @@ func _physics_process(_delta) -> void:
 
 
 func die() -> void:
-	state_node.change_state_to(state_node.DIE)
+	state_node.change_state_to(state_node.States.DIE)
 
 
 func bounce(bounce_velocity := 100.0) -> void:

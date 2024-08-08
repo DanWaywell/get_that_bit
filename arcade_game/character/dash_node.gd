@@ -16,11 +16,11 @@ var times_dashed = 0
 
 func check_for_dash():
 	if Input.is_action_just_pressed(character.btn_dash) and times_dashed < 1:
-		state_node.change_state_to(state_node.DASH)
+		state_node.change_state_to(state_node.States.DASH)
 
 
 func start_dash():
-	if state_node.state == state_node.LEDGE_GRAB:
+	if state_node.state == state_node.States.LEDGE_GRAB:
 			direction_node.flip_direction()
 	
 	character.velocity.y = 0.0
@@ -38,7 +38,7 @@ func process():
 
 func check_to_stop_dash():
 	if timer.is_stopped():
-		state_node.change_state_to(state_node.NORMAL_MOVEMENT)
+		state_node.change_state_to(state_node.States.NORMAL_MOVEMENT)
 
 
 func stop_dash():

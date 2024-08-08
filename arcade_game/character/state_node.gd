@@ -1,8 +1,8 @@
 extends Node2D
 
-enum {STOP, NORMAL_MOVEMENT, DASH, LEDGE_GRAB, DIE}
+enum States {STOP, NORMAL_MOVEMENT, DASH, LEDGE_GRAB, DIE}
 
-var state := STOP
+var state := States.STOP
 
 @onready var character: Character = $".."
 
@@ -17,12 +17,16 @@ var state := STOP
 @onready var sfx: Node2D = $"../Sfx"
 
 
+func _ready() -> void:
+	change_state_to(States.NORMAL_MOVEMENT)
+
+
 func _physics_process(delta: float) -> void:	
 	# process state
 	match state:
-		STOP:
+		States.STOP:
 			pass
-		NORMAL_MOVEMENT:
+		States.NORMAL_MOVEMENT:
 			# process
 			movement_node.process(delta)
 			direction_node.process()
@@ -31,46 +35,46 @@ func _physics_process(delta: float) -> void:
 			# check for exit conditions
 			ledge_grab_node.check_for_ledge_grab()
 			dash_node.check_for_dash()
-		DASH:
+		States.DASH:
 			dash_node.process()
 			sprite.process()
 			dash_node.check_to_stop_dash()
-		LEDGE_GRAB:
+		States.LEDGE_GRAB:
 			# process
 			ledge_grab_node.process(delta)
 			sprite.process()
 			# check for exit conditions
 			ledge_grab_node.check_to_leave_ledge_grab()
 			dash_node.check_for_dash()
-		DIE:
+		States.DIE:
 			pass
 
 
-func change_state_to(new_state: int) -> void:
+func change_state_to(new_state: States) -> void:
 	if state != new_state:
 		# Exit from state (stop state)
 		match state:
-			STOP:
+			States.STOP:
 				pass
-			NORMAL_MOVEMENT:
+			States.NORMAL_MOVEMENT:
 				pass
-			DASH:
+			States.DASH:
 				dash_node.stop_dash()
-			LEDGE_GRAB:
+			States.LEDGE_GRAB:
 				pass
-			DIE:
+			States.DIE:
 				pass
 		# Enter new state (start state)
 		match new_state:
-			STOP:
+			States.STOP:
 				pass
-			NORMAL_MOVEMENT:
+			States.NORMAL_MOVEMENT:
 				pass
-			DASH:
+			States.DASH:
 				dash_node.start_dash()
-			LEDGE_GRAB:
+			States.LEDGE_GRAB:
 				dash_node.reset_dash()
-			DIE:
+			States.DIE:
 				character.velocity = Vector2()
 				collision_shape.set_deferred("disabled", true)
 				sprite.play_explode()

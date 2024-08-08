@@ -40,14 +40,14 @@ func check_to_leave_ledge_grab() -> void:
 
 # Ray must be in contact with ledge
 func grab_ledge() -> void:
-	state_node.change_state_to(state_node.LEDGE_GRAB)
+	state_node.change_state_to(state_node.States.LEDGE_GRAB)
 	movement_node.reset()
 	ledge = ray_cast_forward.get_collider()
 	position_character_to_ledge()
 
 
 func let_go_of_ledge() -> void:
-	state_node.change_state_to(state_node.NORMAL_MOVEMENT)
+	state_node.change_state_to(state_node.States.NORMAL_MOVEMENT)
 	timer.start()
 		
 
