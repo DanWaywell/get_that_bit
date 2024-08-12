@@ -2,6 +2,8 @@ extends Node
 
 enum {LEFT = -1, RIGHT = 1}
 
+const GAME_SCREEN_SIZE = Vector2(256, 144)
+
 const PATH_TITLE_SCREEN = "res://arcade_game/screen/title_screen.tscn"
 const PATH_END_SCREEN = "res://arcade_game/screen/end_screen.tscn"
 
@@ -12,6 +14,11 @@ const FIRST_LEVEL_NUMBER = 1001
 
 var level_number: int = FIRST_LEVEL_NUMBER
 var level_path : String = PATH_FIRST_LEVEL
+
+
+func _ready() -> void:
+	if self == get_tree().current_scene:
+		get_window().content_scale_size = GAME_SCREEN_SIZE
 
 
 func _process(_delta):
