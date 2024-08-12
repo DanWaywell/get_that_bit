@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://vthgj5pf6o0k"]
+
+[ext_resource type="PackedScene" uid="uid://dsqguv1eu63ku" path="res://arcade_game/game.tscn" id="1_p6s3h"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_avesp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_osmnt"]
+size = Vector3(20, 2, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7f2jq"]
+size = Vector3(20, 2, 20)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbipr"]
+
+[sub_resource type="Sky" id="Sky_38f10"]
+sky_material = SubResource("ProceduralSkyMaterial_cbipr")
+
+[sub_resource type="Environment" id="Environment_b45os"]
+background_mode = 2
+sky = SubResource("Sky_38f10")
+
+[node name="3DTestScene" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.962979, -1.17835e-08, 0.269575, -0.255654, 0.317205, 0.913248, -0.0855108, -0.948357, 0.305462, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+texture = SubResource("ViewportTexture_avesp")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(256, 144)
+
+[node name="Game" parent="SubViewport" instance=ExtResource("1_p6s3h")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.00351, 0, 0, 0, 1.00351, 0, 0, 0, 1.00351, 0, 1, 2.26666)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_osmnt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_7f2jq")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b45os")
