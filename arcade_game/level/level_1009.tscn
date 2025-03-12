@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://cutbk818s5ivm"]
+
+[ext_resource type="PackedScene" uid="uid://drnvpf6phtffr" path="res://arcade_game/level/level_1000_base_class.tscn" id="1_gviri"]
+[ext_resource type="PackedScene" uid="uid://b6tgfty1qdw4a" path="res://arcade_game/object/bit.tscn" id="2_c6dp1"]
+[ext_resource type="PackedScene" uid="uid://blkaywmx1qos1" path="res://arcade_game/object/moving_platform.tscn" id="3_phm3c"]
+
+[sub_resource type="Animation" id="Animation_h0hvo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 60)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MovingPlatform2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(104, 108)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MovingPlatform3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(152, 60)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MovingPlatform4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(176, 108)]
+}
+
+[sub_resource type="Animation" id="Animation_q7rud"]
+resource_name = "move_platforms"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(88, 60), Vector2(88, 108)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MovingPlatform2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(112, 108), Vector2(112, 60)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MovingPlatform3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(144, 60), Vector2(144, 108)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MovingPlatform4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(168, 108), Vector2(168, 60)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pa4ue"]
+_data = {
+"RESET": SubResource("Animation_h0hvo"),
+"move_platforms": SubResource("Animation_q7rud")
+}
+
+[node name="Level1009" instance=ExtResource("1_gviri")]
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(655362, 65536, 0, 655363, 65536, 0, 655364, 65536, 0, 655389, 65536, 0, 655388, 65536, 0, 655387, 65536, 0, 655367, 65536, 0, 655366, 65536, 0, 655365, 65536, 0, 655384, 65536, 0, 655385, 65536, 0, 655386, 65536, 0)
+
+[node name="Bit" parent="Bits" index="0"]
+position = Vector2(88, 72)
+
+[node name="Bit2" parent="Bits" index="1" instance=ExtResource("2_c6dp1")]
+position = Vector2(112, 72)
+
+[node name="Bit3" parent="Bits" index="2" instance=ExtResource("2_c6dp1")]
+position = Vector2(144, 72)
+
+[node name="Bit4" parent="Bits" index="3" instance=ExtResource("2_c6dp1")]
+position = Vector2(168, 72)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_pa4ue")
+}
+autoplay = "move_platforms"
+
+[node name="MovingPlatform" parent="." index="5" instance=ExtResource("3_phm3c")]
+position = Vector2(80, 60)
+
+[node name="MovingPlatform2" parent="." index="6" instance=ExtResource("3_phm3c")]
+position = Vector2(104, 108)
+
+[node name="MovingPlatform3" parent="." index="7" instance=ExtResource("3_phm3c")]
+position = Vector2(152, 60)
+
+[node name="MovingPlatform4" parent="." index="8" instance=ExtResource("3_phm3c")]
+position = Vector2(176, 108)

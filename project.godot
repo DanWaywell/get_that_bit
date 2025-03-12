@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="Get That Bit"
-run/main_scene="res://screen/title_screen.tscn"
+run/main_scene="res://arcade_game/game.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Game="*res://autoload/game.tscn"
 
 [display]
 

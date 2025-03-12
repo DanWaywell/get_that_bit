@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsqguv1eu63ku"]
+
+[ext_resource type="Script" path="res://arcade_game/game.gd" id="1_pfu47"]
+[ext_resource type="PackedScene" uid="uid://blfpj1whnbn1h" path="res://arcade_game/screen/title_screen.tscn" id="2_et2wd"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_pfu47")
+
+[node name="TitleScreen" parent="." instance=ExtResource("2_et2wd")]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dngyf88aa1faj"]
+
+[ext_resource type="Texture2D" uid="uid://b6tw7cndx85hk" path="res://arcade_game/assets/sprites.png" id="1_3bibq"]
+[ext_resource type="Script" path="res://arcade_game/object/bouncy_thing.gd" id="1_kywha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie4nu"]
+size = Vector2(6, 6)
+
+[sub_resource type="Animation" id="Animation_vhtx4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_j38at"]
+resource_name = "bounce"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxmy3"]
+_data = {
+"RESET": SubResource("Animation_vhtx4"),
+"bounce": SubResource("Animation_j38at")
+}
+
+[node name="BouncyThing" type="Area2D"]
+z_index = -1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_kywha")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ie4nu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_3bibq")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 8, 16, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kxmy3")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
