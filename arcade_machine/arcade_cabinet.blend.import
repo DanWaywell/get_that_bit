@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ck0b3blxeu7qu"
-path="res://.godot/imported/arcade_machine_model.blend-a3668fb6a49f609f44189aa8b87d50b4.scn"
+uid="uid://fjc4fumqissi"
+path="res://.godot/imported/arcade_cabinet.blend-14c7d6fda7c6cd18205105e750006dba.scn"
 
 [deps]
 
-source_file="res://arcade_machine_model.blend"
-dest_files=["res://.godot/imported/arcade_machine_model.blend-a3668fb6a49f609f44189aa8b87d50b4.scn"]
+source_file="res://arcade_machine/arcade_cabinet.blend"
+dest_files=["res://.godot/imported/arcade_cabinet.blend-14c7d6fda7c6cd18205105e750006dba.scn"]
 
 [params]
 

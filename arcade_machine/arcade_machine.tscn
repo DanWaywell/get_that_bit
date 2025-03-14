@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbtwtwkjr4xdx"]
+
+[ext_resource type="Script" uid="uid://dvnulnod3thn5" path="res://arcade_machine/arcade_machine.gd" id="1_kllvp"]
+[ext_resource type="PackedScene" uid="uid://dsqguv1eu63ku" path="res://arcade_game/game.tscn" id="1_nld3y"]
+[ext_resource type="PackedScene" uid="uid://fjc4fumqissi" path="res://arcade_machine/arcade_cabinet.blend" id="2_0l3wm"]
+[ext_resource type="PackedScene" uid="uid://5svbof8ywpp0" path="res://arcade_machine/arcade_button.tscn" id="4_n5a4l"]
+[ext_resource type="PackedScene" uid="uid://dykjwqqnxgdmc" path="res://arcade_machine/arcade_stick.tscn" id="5_ty8j1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0l3wm"]
+size = Vector3(1.23828, 2.14447, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nld3y"]
+viewport_path = NodePath("ArcadeCabinet/SubViewport")
+
+[node name="ArcadeMachine" type="Node3D"]
+script = ExtResource("1_kllvp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07107, 0)
+shape = SubResource("BoxShape3D_0l3wm")
+
+[node name="Screen" type="Sprite3D" parent="."]
+transform = Transform3D(0.434202, 0, 0, 0, 0.417842, 0.118064, 0, -0.118064, 0.417842, 0, 1.45503, 0.104781)
+texture = SubResource("ViewportTexture_nld3y")
+
+[node name="ArcadeCabinet" parent="." instance=ExtResource("2_0l3wm")]
+process_mode = 4
+
+[node name="ArcadeButton" parent="ArcadeCabinet" instance=ExtResource("4_n5a4l")]
+transform = Transform3D(2, 0, 0, 0, 1.89941, -0.626295, 0, 0.626295, 1.89941, 0.122583, 1.04672, 0.354784)
+connected_button = "jump1"
+color = Color(0.760784, 0, 0, 1)
+
+[node name="ArcadeButton2" parent="ArcadeCabinet" instance=ExtResource("4_n5a4l")]
+transform = Transform3D(2, 0, 0, 0, 1.89941, -0.626295, 0, 0.626295, 1.89941, 0.359385, 1.04672, 0.354784)
+connected_button = "dash1"
+color = Color(0.0708214, 0.329571, 0.516786, 1)
+
+[node name="ArcadeStick" parent="ArcadeCabinet" instance=ExtResource("5_ty8j1")]
+transform = Transform3D(1.5, 0, 0, 0, 1.4287, -0.456972, 0, 0.456972, 1.4287, -0.300027, 1.0364, 0.373029)
+direction_button_up = "up1"
+direction_button_down = "down1"
+direction_button_left = "left1"
+direction_button_right = "right1"
+
+[node name="SubViewport" type="SubViewport" parent="ArcadeCabinet"]
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(256, 144)
+
+[node name="Game" parent="ArcadeCabinet/SubViewport" instance=ExtResource("1_nld3y")]

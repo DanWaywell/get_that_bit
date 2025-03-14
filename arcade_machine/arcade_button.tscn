@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://5svbof8ywpp0"]
+
+[ext_resource type="PackedScene" uid="uid://bbmj1wm23n17i" path="res://arcade_machine/arcade_button.blend" id="1_khmny"]
+[ext_resource type="Script" uid="uid://dn7m1thtdtu36" path="res://arcade_machine/arcade_button.gd" id="2_mrlua"]
+
+[node name="ArcadeButton" instance=ExtResource("1_khmny")]
+script = ExtResource("2_mrlua")

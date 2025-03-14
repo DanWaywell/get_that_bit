@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dykjwqqnxgdmc"]
+
+[ext_resource type="PackedScene" uid="uid://cvbqfr3018ulx" path="res://arcade_machine/arcade_stick.blend" id="1_alkfc"]
+[ext_resource type="Script" uid="uid://cipos8li613f8" path="res://arcade_machine/arcade_stick.gd" id="2_3blou"]
+
+[node name="ArcadeStick" instance=ExtResource("1_alkfc")]
+script = ExtResource("2_3blou")
